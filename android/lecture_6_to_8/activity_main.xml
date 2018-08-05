@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="16dp" android:paddingBottom="16dp" tools:context=".MainActivity" android:orientation="vertical">
+	
+	<!-- 6장 셰어드 프리퍼런스 -->
+	
+	<Button
+		android:id="@+id/btn_edit_profile"
+		android:layout_width="100dp"
+		android:layout_height="wrap_content"
+		android:text="프로필 수정" />
+	
+	<TextView
+		android:id="@+id/name_text_view"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="아무개" />
+	
+	<!-- 7장 내부 저장소 -->
+	
+	<EditText
+		android:id="@+id/memo_edit_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:hint="메모를 입력하세요"
+		android:inputType="text" />
+	
+	<Button
+		android:id="@+id/btn_show_license"
+		android:layout_width="100dp"
+		android:layout_height="wrap_content"
+		android:text="소프트웨어 라이선스" />
+	
+</LinearLayout>

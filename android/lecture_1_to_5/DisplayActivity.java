@@ -8,12 +8,12 @@ import android.content.Intent;
 import android.widget.TextView;
 
 public class DisplayActivity extends ActionBarActivity {
-		
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display);
-
+		
 		// 2강
 		// 보낸 메시지 읽기
 		Intent intent = getIntent();
@@ -21,7 +21,7 @@ public class DisplayActivity extends ActionBarActivity {
 		// 텍스트 위젯에 메시지 출력
 		TextView userMsgTextView = (TextView)findViewById(R.id.user_msg);
 		userMsgTextView.setText(receivedMsg);
-
+		
 	} // End of onCreate
-
+	
 }

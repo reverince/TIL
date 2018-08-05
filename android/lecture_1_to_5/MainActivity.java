@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Toast;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Button;
 
@@ -23,14 +24,15 @@ public class MainActivity extends ActionBarActivity {
 	// 5강 브로드캐스트 리시버
 	Button btnBloodTypeQuery;
 	public static int BLOOD_TYPE_CHOICE = 0;
-
+	TextView bloodTypeTextView;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		// 2강
 		messageEditText = (EditText)findViewById(R.id.edit_message);
-
+		
 		// 3강 이벤트 처리
 		itemEditText = (EditText)findViewById(R.id.todo_item_edit);
 		todoListView = (ListView)findViewById(R.id.todo_list_view);
@@ -55,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
 				return false;
 			}
 		});
-
+		
 		// 4강 인텐트
 		btn1 = (Button)findViewById(R.id.btn_start_activity_1);
 		btn2 = (Button)findViewById(R.id.btn_start_activity_1);
@@ -79,9 +81,10 @@ public class MainActivity extends ActionBarActivity {
 				startActivity(intent);
 			}
 		});
-
+		
 		// 5강 브로드캐스트 리시버
-		btnBloodTypeQuery = (Button)findViewById(R.id.btn_blood_type_Query);
+		btnBloodTypeQuery = (Button)findViewById(R.id.btn_blood_type_query);
+		bloodTypeTextView = (TextView)findViewById(R.id.blood_type_text_view);
 		// 온클릭 이벤트
 		btnBloodTypeQuery.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -90,10 +93,20 @@ public class MainActivity extends ActionBarActivity {
 				startActivityForResult(intent, BLOOD_TYPE_CHOICE);
 			}
 		});
-
-
+		
 	} // End of onCreate
-
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// 결과를 반환한 액티비티 식별
+		if (requestCode = BLOOD_TYPE_CHOICE) {
+			if (resultCode = RESULT_OK) {
+				String bloodType = data.getStringExtra(BloodTypeChoiceActivity.EXTRA_BLOOD_TYPE);
+				bloodTypeTextView.setText(bloodType);
+			}
+		}
+	}
+	
 	// 2강: 같은 액티비티 안에서 메시지 출력
 	public void showMessage(View view) {
 		// 사용자가 입력한 텍스트 읽기
@@ -103,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
 		// 화면 하단에 메시지 출력
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
-
+	
 	// 2강: 다른 액티비티에서 메시지 출력
 	public void sendMessage(View view) {
 		// 전환할 액티비티 설정
@@ -115,5 +128,5 @@ public class MainActivity extends ActionBarActivity {
 		// 액티비티 시작
 		startActivity(intent);
 	}
-
+	
 }
