@@ -12,11 +12,15 @@ import android.widget.ListView;
 import android.widget.Button;
 
 public class ProfileActivity extends ActionBarActivity {
-	EditText nameEditText;
-	Button submitBtn;
+	EditText nameEditText, phoneEditText;
+	Button submitBtn, completeBtn;
 	
-	public static final String PREF_PROFILE = "pref_profile";
+	public static final String PREF_PROFILE = "co.codebasic.pref_profile";
 	public static final String PROFILE_NAME = "profile_name";
+	public static final String PROFILE_EMAIL = "profile_email";
+	public static final String PREF_PROFILE_ID = "profile_id";
+	
+	private ProfileDbHelper mDbHelper;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +29,9 @@ public class ProfileActivity extends ActionBarActivity {
 		
 		// 위젯 객체 참조
 		nameEditText = (EditText)findViewById(R.id.name_edit_text);
+		phoneEditText = (EditText)findViewById(R.id.phone_edit_text);
 		submitBtn = (Button)findViewById(R.id.btn_submit);
+		completeBtn = (Button)findViewById(R.id.btn_complete);
 		
 		// 온클릭 이벤트
 		submitBtn.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +47,31 @@ public class ProfileActivity extends ActionBarActivity {
 				
 				finish();
 			}
+		});
+		completeBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// DB에 프로필 저장
+				setProfileToDB();
+				finish();
+			}
 		})
 		
 	} // End of onCreate
 	
+	private void setProfileToDB() {
+		// 프로필 정보 가져오기
+		String name = nameEditText.getText().toString();
+		String phone = phoneEditText.getText().toString();
+		
+		// DB에 저장
+		long profileId = mDbHelper.setProfile(name, phone);
+		
+		// SharedPreferences 객체에 프로필 ID 저장
+		SharedPreferences sp = getSharedPreferences(PREF_PROFILE, Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();
+		editor.putLong(PREF_PROFILE_ID, profileId);
+		
+		Log.d(Activity.class.getCanonicalName(), "프로필 정보 저장");
+	}
 }

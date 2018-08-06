@@ -12,10 +12,22 @@ android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="16dp"
 		android:layout_height="wrap_content"
 		android:hint="이름을 입력하세요" />
 	
+	<EditText
+		android:id="@+id/phone_edit_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="전화번호를 입력하세요" />
+	
 	<Button
 		android:id="@id+/btn_submit"
 		android:layout_width="100dp"
 		android:layout_height="wrap_content"
-		android:text="저장" />
+		android:text="SP에 저장" />
+	
+	<Button
+		android:id="@id+/btn_complete"
+		android:layout_width="100dp"
+		android:layout_height="wrap_content"
+		android:text="DB에 저장" />
 	
 </LinearLayout>
