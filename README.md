@@ -14,4 +14,5 @@ Today I Learned,
 * 5일 : 첫 커밋! 안드로이드(최근 배운 것 포함) / [마크다운](https://github.com/reverince/TIL/blob/master/lang/markdown.md)
 * 6일 : 안드로이드 SQLite (디버깅 불가능 환경, 따로 공부 필요)
 * 7일 : [루비 스타일 가이드](https://github.com/reverince/TIL/blob/master/lang/ruby_style_guide.md)
-* 8일 : [안드로이드](https://github.com/reverince/TIL/tree/master/android/android.md)
+* 8일 : [안드로이드](https://github.com/reverince/TIL/blob/master/android/android.md)
+* 9일 : [깃](https://github.com/reverince/TIL/blob/master/lang/git.md)
