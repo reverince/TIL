@@ -16,3 +16,4 @@ Today I Learned,
 * 7일 : [루비 스타일 가이드](https://github.com/reverince/TIL/blob/master/lang/ruby_style_guide.md)
 * 8일 : [안드로이드](https://github.com/reverince/TIL/blob/master/android/android.md)
 * 9일 : [깃](https://github.com/reverince/TIL/blob/master/lang/git.md)
+* 10일 : 루비 스타일 가이드 일단 완료!
