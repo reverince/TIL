@@ -1,6 +1,6 @@
 # Git
 
-[Learn Git Branching](https://learngitbranching.js.org/)
+[Learn Git Branching](https://learngitbranching.js.org/) by Peter Cottle
 
 * 여기서 커밋은 아래(앞)에서 위(뒤, top)로 쌓이는 방식으로 묘사한다.
 * `C1`, `C2` 등은 커밋의 해시값으로 한다.
@@ -32,7 +32,7 @@
   * `bugFix`에서 `git rebase master` : `master` 브랜치 뒤에 달린다.
 
 * HEAD : 현재 체크아웃된(작업 중인) 커밋.
-  * `HEAD` -> `master` -> `C1`(커밋의 해시값)일 때 `git checkout C1`하면 `HEAD` -> `C1`
+  * `HEAD` -> `master` -> `C1`일 때 `git checkout C1`하면 `HEAD` -> `C1`
   * 해시값은 다른 해시값과 구분 가능해지는 글자수까지만 입력해도 된다.
 
 * 상대 참조
