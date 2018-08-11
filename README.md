@@ -17,4 +17,4 @@ Today I Learned,
 * 8일 : [안드로이드](https://github.com/reverince/TIL/blob/master/android/android.md)
 * 9일 : [깃](https://github.com/reverince/TIL/blob/master/lang/git.md)
 * 10일 : 루비 스타일 가이드 일단 완료!
-* 11일 : [Node.js](https://github.com/reverince/TIL/blob/master/nodejs/nodejs.md)
+* 11일 : [Node.js](https://github.com/reverince/TIL/blob/master/nodejs/nodejs.md) / [안티패턴](https://github.com/reverince/TIL/blob/master/etc/anti-pattern.md)
