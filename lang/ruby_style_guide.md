@@ -1,6 +1,6 @@
 # 루비 스타일 가이드
 
-[Ruby Style Guide](https://github.com/styleguide/ruby) by GitHub
+[Ruby Style Guide](https://github.com/styleguide/ruby) _by GitHub_
 
 ## 일반
 

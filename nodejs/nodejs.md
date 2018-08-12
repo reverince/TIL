@@ -62,7 +62,7 @@ db.query("SELECT ...", function (result) {
 
 * Node.js 설치 : [구름 IDE](https://ide.goorm.io/) ([설치방법](https://nodejs.org/ko/download/package-manager/#debian-ubuntu-linux))
 
-```shell
+```bash
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
@@ -73,7 +73,7 @@ sudo apt-get install -y nodejs
 
 * 실행
 
-```shell
+```bash
 node nodejs/main.js
 ```
 
@@ -82,7 +82,7 @@ node nodejs/main.js
 * 패키지 설치 : 현재 경로에 `node_modules` 디렉토리가 만들어지고 그 안에 설치된다.
   * `-g` 옵션 : (로컬이 아닌) 전역 설치
 
-```shell
+```bash
 npm install lodash
 ```
 
@@ -92,7 +92,7 @@ npm install lodash
   * `npm install --save` 옵션으로 `package.json`에 패키지를 자동으로 추가할 수 있다.
   * Rails의 `Gemfile`?
 
-```json
+```
 {
   "name": "demo-app",
   "version": "1.0.0",
