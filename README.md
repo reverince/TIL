@@ -6,6 +6,7 @@ Today I Learned,
 
 * 안드로이드([android/](https://github.com/reverince/TIL/tree/master/android))
 * 언어([lang/](https://github.com/reverince/TIL/tree/master/lang))
+* 기타([etc/](https://github.com/reverince/TIL/tree/master/etc))
 
 ### 날짜
 
@@ -18,3 +19,4 @@ Today I Learned,
 * 9일 : [깃](https://github.com/reverince/TIL/blob/master/lang/git.md)
 * 10일 : 루비 스타일 가이드 일단 완료!
 * 11일 : [Node.js](https://github.com/reverince/TIL/blob/master/nodejs/nodejs.md) / [안티패턴](https://github.com/reverince/TIL/blob/master/etc/anti-pattern.md)
+* 12일 : `Hello Node.js!` Node.js 개발환경 구축

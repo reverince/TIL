@@ -1,6 +1,6 @@
 # Node.js
 
-참고 강의 : [국방부오픈소스아카데미](http://osam.oss.kr) APP 개발 과정 by 허광남
+참고 강의 : [국방부오픈소스아카데미](http://osam.oss.kr) APP 개발 과정 _by 허광남_
 
 ## 특징
 
@@ -58,3 +58,46 @@ db.query("SELECT ...", function (result) {
 });
 ```
 
+## 개발 환경
+
+* Node.js 설치 : [구름 IDE](https://ide.goorm.io/) ([설치방법](https://nodejs.org/ko/download/package-manager/#debian-ubuntu-linux))
+
+```shell
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+* URL / 포트 / 실행 설정
+  * `프로젝트` - `실행 URL과 포트` : 사용할 URL(`https://example.run.goorm.io`)과 포트(일반적으로 `8000`) 등록
+  * `프로젝트` - `빌드/실행 설정` : 실행 방식 `Server` 선택
+
+* 실행
+
+```shell
+node nodejs/main.js
+```
+
+#### npm
+
+* 패키지 설치 : 현재 경로에 `node_modules` 디렉토리가 만들어지고 그 안에 설치된다.
+  * `-g` 옵션 : (로컬이 아닌) 전역 설치
+
+```shell
+npm install lodash
+```
+
+* `package.json`
+  * 현재 경로에 `package.json` 파일이 있으면 이 파일에 명시된 버전의 패키지를 자동으로 설치한다.
+  * `npm init`으로 만들 수 있다.
+  * `npm install --save` 옵션으로 `package.json`에 패키지를 자동으로 추가할 수 있다.
+  * Rails의 `Gemfile`?
+
+```json
+{
+  "name": "demo-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
+```
