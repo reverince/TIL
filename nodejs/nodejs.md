@@ -62,7 +62,7 @@ db.query("SELECT ...", function (result) {
 
 * Node.js 설치 : [구름 IDE](https://ide.goorm.io/) ([설치방법](https://nodejs.org/ko/download/package-manager/#debian-ubuntu-linux))
 
-```bash
+```console
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
@@ -73,16 +73,17 @@ sudo apt-get install -y nodejs
 
 * 실행
 
-```bash
+```console
 node nodejs/main.js
 ```
 
 #### npm
 
-* 패키지 설치 : 현재 경로에 `node_modules` 디렉토리가 만들어지고 그 안에 설치된다.
+* 패키지 설치
+  * 현재 경로에 `node_modules` 디렉토리가 만들어지고 그 안에 설치된다.
   * `-g` 옵션 : (로컬이 아닌) 전역 설치
 
-```bash
+```console
 npm install lodash
 ```
 
@@ -100,4 +101,47 @@ npm install lodash
     "lodash": "^4.17.10"
   }
 }
+```
+
+## 디버깅
+
+#### 크롬 개발자 도구 (F12)
+
+* Source 탭
+  * 줄번호를 클릭해 중단점(break point)을 지정할 수 있다.
+* Console 탭
+  * 스크립트에 정의된 변수에 접근하거나 함수를 사용할 수 있다.
+
+#### Node.js 디버깅
+
+* `node debug`
+  * 콘솔에서 `cont`, `next` 명령으로 디버깅 진행
+
+* [node-inspector](https://github.com/node-inspector/node-inspector)
+  * `npm install -g node-inspector`
+  * `node-debug main.js`
+  * 브라우저에서 디버깅 진행
+
+## Express
+
+* 직접 프로젝트 작성
+
+```console
+mkdir myexpress
+cd myexpress
+npm init
+npm install express --save
+
+node app.js
+```
+
+* express-generator
+
+```console
+npm install -g express generator
+express myexpress
+cd myexpress
+npm install
+
+DEBUG=myexpress:* npm start
 ```
