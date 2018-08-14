@@ -145,3 +145,23 @@ npm install
 
 DEBUG=myexpress:* npm start
 ```
+
+#### 기본적인 라우팅, POST 메소드를 이용한 로그인 폼
+
+```javascript
+...
+var bodyParser = require('body-parser');
+...
+
+app.get('/login', function (req, res) {
+  // sendFile은 경로의 html이나 jade 파일을 보내주는 방식
+  res.sendFile(__dirname + '/login.html');
+});
+
+app.post('/login', function (req, res) {
+  var id = req.body.id; // request html body에서 name="id"의 값을 찾아옴
+  var pw = req.body.pw;
+  var result = login(id, pw);
+  res.send(result);
+});
+```
