@@ -1,0 +1,11 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('https://levnode.run.goorm.io');
+  // news 이벤트 핸들러
+  socket.on('news', function (data) {
+    // 클라이언트 측 콘솔에 로깅
+    console.log(data);
+    // 클라이언트에서 socket으로 my other event 이벤트 emit
+    socket.emit('my other event', { my: 'data'});
+  });
+</script>

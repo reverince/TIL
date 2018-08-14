@@ -91,6 +91,7 @@ npm install lodash
   * 현재 경로에 `package.json` 파일이 있으면 이 파일에 명시된 버전의 패키지를 자동으로 설치한다.
   * `npm init`으로 만들 수 있다.
   * `npm install --save` 옵션으로 `package.json`에 패키지를 자동으로 추가할 수 있다.
+  * `"scripts"` 안의 페어는 `npm start`처럼 실행할 수 있다.
   * Rails의 `Gemfile`?
 
 ```
@@ -99,6 +100,9 @@ npm install lodash
   "version": "1.0.0",
   "dependencies": {
     "lodash": "^4.17.10"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
 ```
@@ -122,9 +126,13 @@ npm install lodash
   * `node-debug main.js`
   * 브라우저에서 디버깅 진행
 
-## Express
+## [Express](http://expressjs.com/)
 
-* 직접 프로젝트 작성
+* Node.js 웹 애플리케이션 프레임워크
+
+#### 프로젝트 작성
+
+* 수동
 
 ```console
 mkdir myexpress
@@ -135,7 +143,7 @@ npm install express --save
 node app.js
 ```
 
-* express-generator
+* express-generator (myexpress/)
 
 ```console
 npm install -g express generator
@@ -146,7 +154,7 @@ npm install
 DEBUG=myexpress:* npm start
 ```
 
-#### 기본적인 라우팅, POST 메소드를 이용한 로그인 폼
+#### 기본적인 라우팅, POST 메소드를 이용한 로그인 폼 (loginapp/)
 
 ```javascript
 ...
@@ -164,4 +172,55 @@ app.post('/login', function (req, res) {
   var result = login(id, pw);
   res.send(result);
 });
+```
+
+* 크롬 개발자 도구 Network 탭에서 패킷을 확인할 수 있다.
+
+```
+▼ General
+  Request URL: https://.../login
+  Request Method: POST
+  Status Code: 200 OK
+  
+...
+
+▼ Form Data
+  id: tester
+  pw: 1234
+```
+
+## [Socket.io](https://socket.io/)
+
+* 실시간, 양방향, 이벤트 기반 엔진
+* 모든 플랫폼, 브라우저, 디바이스에서 동작하며 안정성과 속도에 중점을 두었다.
+
+###### server.js
+
+```javascript
+// 클라이언트 연결 시 발생하는 이벤트
+io.sockets.on('connect', function (socket) {
+  // 모든 연결된 클라이언트에게 news 이벤트(json 데이터)를 emit
+  socket.emit('news', { hello: 'world' });
+  // my other event 이벤트 핸들러
+  socket.on('my other event', function (data) {
+    // 서버 측 콘솔에 로깅
+    console.log(data);
+  });
+});
+```
+
+###### index.html
+
+```html
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('https://levnode.run.goorm.io');
+  // news 이벤트 핸들러
+  socket.on('news', function (data) {
+    // 클라이언트 측 콘솔에 로깅
+    console.log(data);
+    // 클라이언트에서 socket으로 my other event 이벤트 emit
+    socket.emit('my other event', { my: 'data'});
+  });
+</script>
 ```
