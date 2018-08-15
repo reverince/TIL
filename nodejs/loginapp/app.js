@@ -10,6 +10,7 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+// https://.../login
 app.get('/login', function (req, res) {
   // sendFile은 경로의 html이나 jade 파일을 보내주는 방식
   res.sendFile(__dirname + '/login.html');
