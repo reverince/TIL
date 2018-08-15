@@ -224,3 +224,22 @@ io.sockets.on('connect', function (socket) {
   });
 </script>
 ```
+
+## [Heroku](https://heroku.com)에 Deploy
+
+[Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+
+1. `sudo snap install heroku --classic`
+  * snap 설치가 안 된 경우 `sudo apt update`, `sudo apt install snapd`
+  * 안되면 `wget https://toolbelt.heroku.com/install-ubuntu.sh | sh`, `chmod +x install_ubuntu.sh`, sh 파일 실행
+1. `heroku login` : heroku 계정으로 로그인
+1. `git clone https://github.com/heroku/node-js-getting-started.git`
+1. 경로에서 `heroku create`
+1. `git push heroku master` : 디플로이
+1. `heroku ps:scale web=1` : 프로세스 스케일을 웹 1개로 설정
+1. `heroku open` : 페이지 열기
+1. `npm install`
+1. `heroku local web -p 3000` : 로컬 3000번 포트에서 웹 앱 실행
+
+
+* `heroku logs --tail` : 실시간 로그 확인

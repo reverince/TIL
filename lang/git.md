@@ -51,6 +51,14 @@
   * `git revert HEAD` : `HEAD`가 가리키는 커밋의 델타와 완전히 반대되는 내용을 커밋
   * 리모트 브랜치에서도 사용할 수 있다.
 
+### 원격 저장소 (remote)
+
+* `git remote add heroku http://...` : 새로운 원격 저장소 정의
+
+* `git remote -v` : 원격 저장소 목록
+
+* `git remote rm heroku` : 원격 저장소 목록에서 제거
+
 ### 커밋 옮기기
 
 * 체리픽(cherry-pick) : 지정한 커밋들만 지금 브랜치 아래로 커밋
@@ -73,4 +81,3 @@
   1. `git cherry-pick C1`로 수정할 커밋 체리픽
   1. `git commmit --amend`로 커밋 수정
   1. `git cherry-pick C2 C3`로 이후 커밋 체리픽
-
