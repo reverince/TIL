@@ -243,3 +243,43 @@ io.sockets.on('connect', function (socket) {
 
 
 * `heroku logs --tail` : 실시간 로그 확인
+
+## MariaDB
+
+* `apt install mariadb-server`
+* `mysql`로 확인
+  * `ERROR 2002 (HY000)`가 발생하는 경우 `/etc/init.d`에서 `./mysql start` 실행
+  * `mysql -uroot -password`로 콘솔 접속
+  * `SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpass');`로 비밀번호 변경 가능
+* mysql 콘솔에서 `javatest` 데이터베이스와 `testdata` 테이블 생성하고 레코드 추가
+
+```sql
+create database javatest;
+use javatest;
+create table testdata (
+  id int not null auto_increment primary key,
+  foo varchar(25),
+  bar int);
+insert into testdata values(null, 'hello', 12345);
+```
+
+* [node-mysql](https://github.com/mysqljs/mysql) 테스트 코드
+
+```javascript
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'levdev',
+  database : 'javatest'
+});
+
+connection.connect();
+
+connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+  if (error) throw error;
+  console.log('The solution is: ', results[0].solution);
+});
+
+connection.end();
+```

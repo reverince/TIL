@@ -24,3 +24,4 @@ Today I Learned,
 * 13일 : Express 앱 생성
 * 14일 : Express basic routing, sendFile
 * 15일 : Socket.io / Heroku에 Express 앱 디플로이 (https://levnode.herokuapp.com/)
+* 16일 : node-mysql을 이용해 MariaDB와 Node.js를 연결했다.
