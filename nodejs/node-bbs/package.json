@@ -1,0 +1,10 @@
+{
+  "name": "node-bbs",
+  "description": "message board",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.1",
+    "mysql": "^2.5.2"
+  }
+}

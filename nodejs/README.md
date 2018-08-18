@@ -44,48 +44,40 @@
 | Network | 240,000,000 사이클 |
 
 * 동기식은 응답이 와야 이후 코드가 실행된다. 대신 코드가 간단하다.
-
-```javascript
-var result = db.query("SELECT ...");
-// use result
-```
+  ```javascript
+  var result = db.query("SELECT ...");
+  // use result
+  ```
 
 * 비동기식은 응답을 기다리지 않아도 된다. 대신 코드가 복잡해진다.
-
-```javascript
-db.query("SELECT ...", function (result) {
-  // use result
-});
-```
+  ```javascript
+  db.query("SELECT ...", function (result) {
+    // use result
+  });
+  ```
 
 ## 개발 환경
 
 * Node.js 설치 : [구름 IDE](https://ide.goorm.io/) ([설치방법](https://nodejs.org/ko/download/package-manager/#debian-ubuntu-linux))
-
-```console
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs
-```
+  ```console
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+  ```
 
 * URL / 포트 / 실행 설정
   * `프로젝트` - `실행 URL과 포트` : 사용할 URL(`https://example.run.goorm.io`)과 포트(일반적으로 `8000`) 등록
   * `프로젝트` - `빌드/실행 설정` : 실행 방식 `Server` 선택
 
 * 실행
-
-```console
-node nodejs/main.js
-```
+  ```console
+  node nodejs/main.js
+  ```
 
 #### npm
 
-* 패키지 설치
+* 패키지 설치 : `npm install lodash`
   * 현재 경로에 `node_modules` 디렉토리가 만들어지고 그 안에 설치된다.
   * `-g` 옵션 : (로컬이 아닌) 전역 설치
-
-```console
-npm install lodash
-```
 
 * `package.json`
   * 현재 경로에 `package.json` 파일이 있으면 이 파일에 명시된 버전의 패키지를 자동으로 설치한다.
@@ -94,17 +86,17 @@ npm install lodash
   * `"scripts"` 안의 페어는 `npm start`처럼 실행할 수 있다.
   * Rails의 `Gemfile`?
 
-```
-{
-  "name": "demo-app",
-  "version": "1.0.0",
-  "dependencies": {
-    "lodash": "^4.17.10"
-  },
-  "scripts": {
-    "start": "node index.js"
+  ```
+  {
+    "name": "demo-app",
+    "version": "1.0.0",
+    "dependencies": {
+      "lodash": "^4.17.10"
+    },
+    "scripts": {
+      "start": "node index.js"
+    }
   }
-}
 ```
 
 ## 디버깅
@@ -133,28 +125,28 @@ npm install lodash
 #### 프로젝트 작성
 
 * 수동
+  ```console
+  mkdir myexpress
+  cd myexpress
+  npm init
+  npm install express --save
 
-```console
-mkdir myexpress
-cd myexpress
-npm init
-npm install express --save
-
-node app.js
-```
+  node app.js
+  ```
 
 * express-generator (myexpress/)
+  ```console
+  npm install -g express generator
+  express myexpress
+  cd myexpress
+  npm install
 
-```console
-npm install -g express generator
-express myexpress
-cd myexpress
-npm install
-
-DEBUG=myexpress:* npm start
-```
+  DEBUG=myexpress:* npm start
+  ```
 
 #### 기본적인 라우팅, POST 메소드를 이용한 로그인 폼 (loginapp/)
+
+###### app.js
 
 ```javascript
 ...
@@ -175,19 +167,18 @@ app.post('/login', function (req, res) {
 ```
 
 * 크롬 개발자 도구 Network 탭에서 패킷을 확인할 수 있다.
+  ```
+  ▼ General
+    Request URL: https://.../login
+    Request Method: POST
+    Status Code: 200 OK
 
-```
-▼ General
-  Request URL: https://.../login
-  Request Method: POST
-  Status Code: 200 OK
-  
-...
+  ...
 
-▼ Form Data
-  id: tester
-  pw: 1234
-```
+  ▼ Form Data
+    id: tester
+    pw: 1234
+  ```
 
 ## [Socket.io](https://socket.io/)
 
@@ -232,13 +223,21 @@ io.sockets.on('connect', function (socket) {
 1. `sudo snap install heroku --classic`
   * snap 설치가 안 된 경우 `sudo apt update`, `sudo apt install snapd`
   * 안되면 `wget https://toolbelt.heroku.com/install-ubuntu.sh | sh`, `chmod +x install_ubuntu.sh`, sh 파일 실행
+
 1. `heroku login` : heroku 계정으로 로그인
+
 1. `git clone https://github.com/heroku/node-js-getting-started.git`
+
 1. 경로에서 `heroku create`
+
 1. `git push heroku master` : 디플로이
+
 1. `heroku ps:scale web=1` : 프로세스 스케일을 웹 1개로 설정
+
 1. `heroku open` : 페이지 열기
+
 1. `npm install`
+
 1. `heroku local web -p 3000` : 로컬 3000번 포트에서 웹 앱 실행
 
 
@@ -247,23 +246,45 @@ io.sockets.on('connect', function (socket) {
 ## MariaDB
 
 * `apt install mariadb-server`
+
 * `mysql`로 확인
-  * `ERROR 2002 (HY000)`가 발생하는 경우 `/etc/init.d`에서 `./mysql start` 실행
-  * `mysql -uroot -password`로 콘솔 접속
+  * `ERROR 2002 (HY000)`가 발생하는 경우 `/etc/init.d/mysql start`로 실행
+
+#### mysql 작업
+
+1. utf-8 인코딩을 위해 `/etc/mysql/my.cnf`에 다음 추가
+  ```
+  [client]
+  default-character-set = utf8
+
+  [mysql]
+  default-character-set = utf8
+
+  [mysqld]
+  collation-server = utf8_unicode_ci
+  init-connect = "SET NAMES utf8"
+  character-set-server = utf8
+  ```
+
+1. `service mysql restart`로 mysql 재시작
+
+1. `mysql -p`로 콘솔 접속
   * `SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpass');`로 비밀번호 변경 가능
-* mysql 콘솔에서 `javatest` 데이터베이스와 `testdata` 테이블 생성하고 레코드 추가
 
-```sql
-create database javatest;
-use javatest;
-create table testdata (
-  id int not null auto_increment primary key,
-  foo varchar(25),
-  bar int);
-insert into testdata values(null, 'hello', 12345);
-```
+1. mysql 콘솔에서 `javatest` 데이터베이스와 `testdata` 테이블 생성하고 레코드 추가
+  ```sql
+  create database javatest;
+  use javatest;
+  create table testdata (
+    id int not null auto_increment primary key,
+    foo varchar(25),
+    bar int);
+  insert into testdata values(null, 'hello', 12345);
+  ```
 
-* [node-mysql](https://github.com/mysqljs/mysql) 테스트 코드
+#### [node-mysql](https://github.com/mysqljs/mysql)
+
+###### mymariadb/mysql-query.js
 
 ```javascript
 var mysql      = require('mysql');
@@ -276,10 +297,49 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
+// 쿼리 테이블명, 필드명에 억음 부호(`; grave accent)를 사용할 수 있음
+connection.query('SELECT * FROM `testdata` WHERE `foo` = ?', ['hello'], function (error, results, fields) {
+  // error will be an Error if one occurred during the query
+  if (error) {
+    throw error;
+  }
+  // results will contain the results of the query
+  console.log(results[0].bar);
+  // fields will contain information about the returned results fields (if any)
+  for (var f in fields) {
+    console.log(fields[f].name);
+  }
 });
 
 connection.end();
 ```
+
+#### node-bbs/
+
+* `git clone https://github.com/kenu/node-bbs.git`
+
+* name과 message 필드는 반드시 입력하도록 설정
+  ```javascript
+  // 저장하기
+  function save(message, res) {
+      var resultObj = {};
+      // name이나 message 필드가 입력되지 않은 경우
+      if (message.name === '' || message.message === '') {
+          resultObj.success = false;
+      }
+      else {
+          var query = connection.query('INSERT INTO board SET ?', message, function (err, result) {
+          var resultObj = {};
+          if (err) {
+              resultObj.success = false;
+              console.log(err);
+          } else {
+              resultObj.success = true;
+              resultObj.id = result.insertId;
+          }
+      });
+      res.send(JSON.stringify(resultObj));
+      console.log(query.sql);
+      }
+  }
+  ```

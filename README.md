@@ -26,3 +26,4 @@ Today I Learned,
 * 15일 : Socket.io / Heroku에 Express 앱 디플로이 (https://levnode.herokuapp.com/)
 * 16일 : node-mysql을 이용해 MariaDB와 Node.js를 연결했다.
 * 17일 : 개발 중인 디스코드 봇 [KonmAI](https://github.com/reverince/Discord-bot-KonmAI)를 Heroku에 디플로이 시도했지만 실패했다...
+* 18일 : mysql 인코딩 / MariaDB에 쿼리 전송
