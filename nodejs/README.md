@@ -243,11 +243,11 @@ io.sockets.on('connect', function (socket) {
 
 * `heroku logs --tail` : 실시간 로그 확인
 
-## MariaDB
+## [MariaDB](https://mariadb.com/)
 
-* `apt install mariadb-server`
+1. `apt install mariadb-server`
 
-* `mysql`로 확인
+1. `mysql`로 확인
   * `ERROR 2002 (HY000)`가 발생하는 경우 `/etc/init.d/mysql start`로 실행
 
 #### mysql 작업
@@ -283,6 +283,8 @@ io.sockets.on('connect', function (socket) {
   ```
 
 #### [node-mysql](https://github.com/mysqljs/mysql)
+
+* `npm install --save mysql`
 
 ###### mymariadb/mysql-query.js
 
@@ -343,3 +345,131 @@ connection.end();
       }
   }
   ```
+
+## [MongoDB](https://www.mongodb.com/)
+
+1. [설치](https://docs.mongodb.com/master/tutorial/install-mongodb-on-ubuntu/)
+
+1. `mkdir /data`, `mkdir /data/db`로 DB 폴더 생성
+
+1. `mongod`로 서버 실행
+
+1. `mongo`로 클라이언트 실행
+
+1. 클라이언트에서 `use test`로 `test` DB 선택 (없으면 자동으로 만들어짐)
+
+
+* `show dbs`로 DB 목록 확인
+* `show collections`로 콜렉션 목록 확인
+
+
+* `db.dropDatabase()`로 현재 DB 삭제
+* `db.inventory.drop()`으로 `inventory` 콜렉션 삭제
+
+#### CRUD
+
+* Insert
+  ```js  
+  db.inventory.insertOne(
+   { item: "canvas", qty: 100, tags: ["cotton"], size: { h: 28, w: 35.5, uom: "cm" } }
+  )
+  
+  db.inventory.insertMany([
+   { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+   { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
+   { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+   { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+   { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
+  ]);
+  ```
+
+* Query
+  ```js
+  // SELECT * FROM inventory
+  db.inventory.find( {} )
+  
+  // SELECT * FROM inventory WHERE status = "D"
+  db.inventory.find( { status: "D" } )
+  
+  // SELECT * FROM inventory WHERE status in ("A", "D")
+  db.inventory.find( { status: { $in: [ "A", "D" ] } } )
+  
+  // SELECT * FROM inventory WHERE status = "A" OR qty < 30
+  db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
+  ```
+
+* Update
+  ```js
+  // 조건에 맞는 첫 도큐먼트 수정
+  db.inventory.updateOne(
+   { item: "paper" },
+   {
+     $set: { "size.uom": "cm", status: "P" },
+     $currentDate: { lastModified: true }
+   }
+  )
+  
+  // 조건에 맞는 모든 도큐먼트 수정
+  db.inventory.updateMany(
+   { "qty": { $lt: 50 } },
+   {
+     $set: { "size.uom": "in", status: "P" },
+     $currentDate: { lastModified: true }
+   }
+  )
+  
+  // 조건에 맞는 첫 도큐먼트 덮어쓰기
+  db.inventory.replaceOne(
+   { item: "paper" },
+   { item: "paper", instock: [ { warehouse: "A", qty: 60 }, { warehouse: "B", qty: 40 } ] }
+  )
+  ```
+
+* Remove
+  ```js
+  // 조건에 맞는 첫 도큐먼트 삭제
+  db.inventory.deleteOne( { status: "D" } )
+  
+  // 조건에 맞는 모든 도큐먼트 삭제
+  db.inventory.deleteMany({ status : "A" })
+  ```
+
+#### mymongodb/
+
+* `npm install --save mongodb`
+
+###### mongoInsert.js
+
+```js
+var insertDocuments = function(db, callback) {
+  // Get the documents collection
+  // db is the connected client; should call db()
+  var collection = db.db().collection('documents');
+  // Insert some documents
+  collection.insertMany([
+    {a : 1}, {a : 2}, {a : 3}
+  ], function(err, result) {
+    assert.equal(err, null);
+    assert.equal(3, result.result.n);
+    assert.equal(3, result.ops.length);
+    console.log("Inserted 3 documents into the document collection");
+    callback(result);
+  });
+};
+
+var MongoClient = require('mongodb').MongoClient,
+    assert = require('assert');
+ 
+// Connection URL
+var url = 'mongodb://localhost:27017/mymongodb';
+// Use connect method to connect to the server
+// current URL string parser is deprecated; use the new parser
+MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected correctly to the server");
+  
+  insertDocuments(db, function() {
+    db.close();
+  });
+});
+```
