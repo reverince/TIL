@@ -28,3 +28,4 @@ Today I Learned,
 * 17일 : 개발 중인 디스코드 봇 [KonmAI](https://github.com/reverince/Discord-bot-KonmAI)를 Heroku에 디플로이 시도했지만 실패했다...
 * 18일 : mysql 인코딩 / MariaDB에 쿼리 전송
 * 19일 : Jekyll 블로그 생성 / MongoDB와 Node.js를 연결했다.
+* 20일 : 즐거운 MongoDB
