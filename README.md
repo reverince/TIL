@@ -27,5 +27,7 @@ Today I Learned,
 * 16일 : node-mysql을 이용해 MariaDB와 Node.js를 연결했다.
 * 17일 : 개발 중인 디스코드 봇 [KonmAI](https://github.com/reverince/Discord-bot-KonmAI)를 Heroku에 디플로이 시도했지만 실패했다...
 * 18일 : mysql 인코딩 / MariaDB에 쿼리 전송
-* 19일 : Jekyll 블로그 생성 / MongoDB와 Node.js를 연결했다.
+* 19일 : Jekyll [블로그](https://github.com/reverince/reverince.github.io) 생성 / MongoDB와 Node.js를 연결했다.
 * 20일 : 즐거운 MongoDB
+* 21일 : Jekyll [NexT](https://github.com/Simpleyyt/jekyll-theme-next) 테마 커스터마이징
+* 22일 : 테스트 프레임워크 [QUnit](https://qunitjs.com/) / Jekyll SEO(검색엔진 최적화)

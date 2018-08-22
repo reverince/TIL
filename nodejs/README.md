@@ -490,3 +490,39 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 });
 
 ```
+
+## 테스트 프레임워크
+
+#### QUnit
+
+1. `npm install -g qunit`
+
+1. `test` 폴더 아래 js 파일 생성
+  ```js
+  QUnit.test( "hello test", function( assert ) {
+    assert.ok( 1 == "1", "Hello!" );
+  });
+
+  QUnit.test( "maybe-failed test", function( assert ) {
+    assert.ok( 1 === "1", "Can I pass?" );
+  });
+  ```
+
+1. 터미널에서 `qunit` 실행
+  ```console
+  TAP version 13
+  ok 1 hello test
+  not ok 2 failed test
+    ---
+    message: "Can I pass?"
+    severity: failed
+    actual: false
+    expected: true
+    stack     at Object.<anonymous> (/...)
+    ...
+  1..2
+  # pass 1
+  # skip 0
+  # todo 0
+  # fail 1
+  ```
