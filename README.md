@@ -11,4 +11,6 @@ Today I Learned,
 
 ### 진행 중인 프로젝트
 
-* 인터랙티브 픽션
+* Jekyll 블로그
+* Discord.py 봇
+* 인터랙티브 픽션 (Ruby)
