@@ -1,5 +1,7 @@
 # 루비 스타일 가이드
 
+상위 : [루비](https://github.com/reverince/TIL/tree/master/lang/ruby)
+
 [Ruby Style Guide](https://github.com/styleguide/ruby) _by GitHub_
 
 ## 일반
@@ -73,7 +75,7 @@ end
 
 * `public`, `protected`, `private`는 적용할 메소드의 들여쓰기 단계에 맞추고 앞에 한 줄을 비운다.
 
-## 콜렉션
+## 컬렉션
 
 * 문자열 배열을 만들 때는 `%w`를 사용한다.
 
@@ -85,7 +87,7 @@ STATES = ["draft", "open", "closed"]
 STATES = %w(draft open closed)
 ```
 
-* 콜렉션 내 중복을 허용하지 않는 경우 배열(`Array`) 대신 집합(`Set`)을 사용한다.
+* 컬렉션 내 중복을 허용하지 않는 경우 배열(`Array`) 대신 집합(`Set`)을 사용한다.
 
 * 해시의 키로는 문자열이 아닌 심볼을 사용한다.
 

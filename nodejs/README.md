@@ -349,7 +349,7 @@ connection.end();
 ## [MongoDB](https://www.mongodb.com/)
 
 * [NoSQL](https://ko.wikipedia.org/wiki/NoSQL) 데이터베이스
-* JSON과 유사한 '도큐먼트'(≒레코드)를 콜렉션(≒테이블)에 저장하는 DB 시스템
+* JSON과 유사한 '도큐먼트'(≒레코드)를 컬렉션(≒테이블)에 저장하는 DB 시스템
 
 
 1. [설치](https://docs.mongodb.com/master/tutorial/install-mongodb-on-ubuntu/)
@@ -364,11 +364,11 @@ connection.end();
 
 
 * `show dbs`로 DB 목록 확인
-* `show collections`로 콜렉션 목록 확인
+* `show collections`로 컬렉션 목록 확인
 
 
 * `db.dropDatabase()`로 현재 DB 삭제
-* `db.inventory.drop()`으로 `inventory` 콜렉션 삭제
+* `db.inventory.drop()`으로 `inventory` 컬렉션 삭제
 
 #### CRUD
 
