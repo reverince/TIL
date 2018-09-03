@@ -8,6 +8,7 @@ Today I Learned,
 * 안드로이드([android/](https://github.com/reverince/TIL/tree/master/android))
 * 언어([lang/](https://github.com/reverince/TIL/tree/master/lang))
   * 루비([ruby/](https://github.com/reverince/TIL/tree/master/lang/ruby))
+* 유니티([unity/](https://github.com/reverince/TIL/tree/master/unity))
 * 기타([etc/](https://github.com/reverince/TIL/tree/master/etc))
 
 ### 진행 중인 프로젝트
