@@ -5,11 +5,19 @@
 
 ## 용어
 
+* [Garbage Collection](https://ko.wikipedia.org/wiki/가비지 컬렉션)(가비지 컬렉션; 쓰레기 수집) : 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기능
+
+* Socket(소켓) : 컴퓨터 네트워크를 경유하는 프로세스 간 통신의 종착점
+
+### 약어
+
 * [DRY](https://ko.wikipedia.org/wiki/%EC%A4%91%EB%B3%B5%EB%B0%B0%EC%A0%9C)(Don't Repeat Yourself; 중복배제)
 
 * [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)(Read-Eval-Print Loop)
 
 * [REST](https://ko.wikipedia.org/wiki/REST)(Representational State Transfer)
+
+* [WYSIWYG](https://ko.wikipedia.org/wiki/%EC%9C%84%EC%A7%80%EC%9C%84%EA%B7%B8)(What You See Is What You Get)
 
 
 ## 유용한 사이트
@@ -55,9 +63,14 @@
 
 * [CodeCode Ninja](https://codecode.ninja) (유료)
 
+* [Envato Tuts+](https://tutsplus.com)
+
+* [매일프로그래밍](https://mailprogramming.com)
+
 * [생활코딩](https://opentutorials.org/course/1)
 
 * [유니티 자습서](https://unity3d.com/kr/learn/tutorials)
+
 
 ## 유용한 포스트
 
