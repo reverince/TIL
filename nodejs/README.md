@@ -2,6 +2,7 @@
 
 참고 강의 : [국방부오픈소스아카데미](http://osam.oss.kr) APP 개발 과정 _by 허광남_
 
+
 ## 특징
 
 * 자바스크립트 기반
@@ -12,7 +13,7 @@
 
 #### 장점
 
-* [npm](https://www.npmjs.com/)
+* [npm](https://www.npmjs.com)
 * 성능 개선
   * [Rails와의 비교](https://medium.com/@TechMagic/nodejs-vs-ruby-on-rails-comparison-2017-which-is-the-best-for-web-development-9aae7a3f08bf)
 * C/C++ 애드온
@@ -24,6 +25,7 @@
 * 예외 처리를 실수하면 서버가 다운된다.
 * Callback
 * 불안정한 API
+
 
 ## 비동기 프로그래밍
 
@@ -55,6 +57,7 @@
     // use result
   });
   ```
+
 
 ## 개발 환경
 
@@ -99,6 +102,7 @@
   }
 ```
 
+
 ## 디버깅
 
 #### 크롬 개발자 도구 (F12)
@@ -118,7 +122,8 @@
   * `node-debug main.js`
   * 브라우저에서 디버깅 진행
 
-## [Express](http://expressjs.com/)
+
+## [Express](http://expressjs.com)
 
 * Node.js 웹 애플리케이션 프레임워크
 
@@ -180,7 +185,8 @@ app.post('/login', function (req, res) {
     pw: 1234
   ```
 
-## [Socket.io](https://socket.io/)
+
+## [Socket.io](https://socket.io)
 
 * 실시간, 양방향, 이벤트 기반 엔진
 * 모든 플랫폼, 브라우저, 디바이스에서 동작하며 안정성과 속도에 중점을 두었다.
@@ -216,6 +222,7 @@ io.sockets.on('connect', function (socket) {
 </script>
 ```
 
+
 ## [Heroku](https://heroku.com)에 Deploy
 
 [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
@@ -243,7 +250,8 @@ io.sockets.on('connect', function (socket) {
 
 * `heroku logs --tail` : 실시간 로그 확인
 
-## [MariaDB](https://mariadb.com/)
+
+## [MariaDB](https://mariadb.com)
 
 1. `apt install mariadb-server`
 
@@ -346,7 +354,8 @@ connection.end();
   }
   ```
 
-## [MongoDB](https://www.mongodb.com/)
+
+## [MongoDB](https://www.mongodb.com)
 
 * [NoSQL](https://ko.wikipedia.org/wiki/NoSQL) 데이터베이스
 * JSON과 유사한 '도큐먼트'(≒레코드)를 컬렉션(≒테이블)에 저장하는 DB 시스템
@@ -491,9 +500,10 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 
 ```
 
+
 ## 테스트 프레임워크
 
-#### QUnit
+#### [QUnit](https://qunitjs.com)
 
 1. `npm install -g qunit`
 
@@ -526,3 +536,18 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
   # todo 0
   # fail 1
   ```
+
+## 클러스터링
+
+#### [PM2](http://pm2.keymetrics.io)
+
+* `npm install -g pm2`
+
+
+* `pm2 start app.js -i N` : `N`개의 워커를 시작한다. (0이면 CPU 코어 개수만큼)
+* `pm2 scale app +N` : `N`개의 워커를 추가로 시작한다.
+* `pm2 stop all` : 모든 워커를 정지한다.
+* `pm2 delete all` : 모든 워커를 삭제한다.
+* `pm2 ls` : 워커들의 상태를 보여준다.
+* `pm2 reload app` : 워커를 차례로 재시작한다.
+  * 서버를 셧다운하지 않고도 변경 사항을 반영할 수 있다.
