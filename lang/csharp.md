@@ -67,3 +67,37 @@ public class Player
 * 접근자(getter)와 설정자(setter)를 더 간단하게 구현할 수 있다.
 
 * `get`이나 `set`을 생략해 읽기 전용이나 쓰기 전용으로 만들 수 있다.
+
+
+## 확장 메소드(Extension Methods)
+
+```cs
+using UnityEngine;
+using System.Collections;
+
+// 일반적으로 확장 메소드는 한 static 클래스에 모아 둔다
+public static class ExtensionMethods
+{
+  // 확장 메소드는 static이어야 한다
+  // this 키워드 클래스의 확장 메소드가 된다
+  public static void ResetTransformation(this Transform trans)
+  {
+      trans.position = Vector3.zero;
+      trans.localRotation = Quaternion.identity;
+      trans.localScale = new Vector3(1, 1, 1);
+  }
+}
+```
+
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class SomeClass : MonoBehaviour 
+{
+    void Start () {
+        // 메소드가 호출된 객체가 자동으로 첫 매개변수가 된다
+        transform.ResetTransformation();
+    }
+}
+```
