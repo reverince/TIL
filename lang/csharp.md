@@ -21,7 +21,39 @@ class Apple : Fruit
 }
 ```
 
-* 자식 클래스에서 부모 클래스 멤버에 접근하는 데 사용한다
+* 자식 클래스에서 부모 클래스 멤버에 접근한다.
+
+
+## `delegate` : [대리자 사용](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/delegates/using-delegates)(위임)
+
+```cs
+delegate void Motion(float time);
+
+void Jump(float time) { ... }
+void Walk(float time) { ... }
+
+Motion m = Jump;
+m += Walk;
+
+m(1.0f)  // Jump(1.0f); Walk(1.0f);
+```
+
+* C++의 함수 포인터처럼 메소드를 캡슐화한다.
+
+* .NET 라이브러리에 이미 정의된 위임형을 사용할 수 있다.
+  * 반환이 없는 경우 : `Action<T>`
+  * 반환이 있는 경우 : `Func<T, TResult>`
+
+
+## `foreach`
+
+* `foreach`는 실행 중 요소가 추가 혹은 삭제되면 예측하지 못한 결과를 불러일으킬 수 있으므로 읽기 전용 `IEnumerable<T>`와 사용하는 것이 좋다.
+
+  ```cs
+  static readonly IEnumerable<string> faces = new[] { "normal", "smile", "angry" };
+  ...
+  foreach (var f in faces) { ... }
+  ```
 
 
 ## `where` : [제네릭 형식 제약 조건](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/keywords/where-generic-type-constraint)
@@ -34,6 +66,81 @@ public T genericMethod<T>(T param) where T : new()
 ```
 
 * `where`으로 `T`의 제약 조건을 지정할 수 있다.
+
+
+## `yield`
+
+* `foreach`를 사용하는 경우
+
+  ```cs
+  using System;
+  using System.Collections;
+
+  class Program {
+    public static void Main (string[] args) {
+      foreach (int x in Yielder())
+      {
+        Console.WriteLine(x);
+      }
+    }
+
+    static IEnumerable Yielder()
+    {
+      yield return 2;
+      yield return 3;
+      yield return 5;
+    }
+  }
+  ```
+
+* `IEnumerator`를 사용하는 경우
+
+  ```cs
+  using System;
+  using System.Collections;
+
+  class Program {
+    public static void Main (string[] args) {
+      IEnumerator iEnumerator = Yielder();
+
+      while (iEnumerator.MoveNext())
+      {
+        Console.WriteLine(iEnumerator.Current);
+      }
+    }
+
+    static IEnumerator Yielder()
+    {
+      yield return 2;
+      yield return 3;
+      yield return 5;
+    }
+  }
+  ```
+
+* 유니티에서의 용례
+
+  ```cs
+  void Start()
+  {
+    StartCoroutine("Coroutine");
+  }
+
+  IEnumerator Coroutine()
+  {
+    // 처음 호출됐을 때는 다음 프레임에 Coroutine() 진행
+    yield return null;
+    // 3초 후에 다시 Coroutine() 진행
+    yield return new WaitForSeconds(3);
+    // 6초 후에 다시 Coroutine() 진행
+    yield return new WaitForSeconds(6);
+    // Coroutine() 종료
+  }
+  ```
+
+
+## [람다 식](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)(Lambda Expressions)
+
 
 ## [속성](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/properties)(Properties)
 
@@ -68,8 +175,31 @@ public class Player
 
 * `get`이나 `set`을 생략해 읽기 전용이나 쓰기 전용으로 만들 수 있다.
 
+### [인덱서](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/indexers)(Indexers)
 
-## 확장 메소드(Extension Methods)
+```cs
+class SampleCollection<T>
+{
+   private T[] arr = new T[100];
+   
+   public T this[int i] { get; set; }
+}
+
+class Program
+{
+   static void Main()
+   {
+      var stringCollection = new SampleCollection<string>();
+      stringCollection[0] = "Hello, World";
+      Console.WriteLine(stringCollection[0]);
+   }
+}
+```
+
+* 클래스나 구조체의 인스턴스를 배열처럼 인덱싱한다.
+
+
+## [확장명 메소드](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)(Extension Methods)
 
 ```cs
 using UnityEngine;
