@@ -1,9 +1,9 @@
 # Ruby
 
-하위 : [루비 스타일 가이드](https://github.com/reverince/TIL/blob/master/lang/ruby/ruby_style_guide.md)
+하위 : [루비 스타일 가이드](https://github.com/reverince/TIL/blob/master/lang/ruby/style_guide.md), [레일즈](https://github.com/reverince/TIL/blob/master/lang/ruby/rails.md)
 
 * [Ruby-Doc.org](https://ruby-doc.org)
-* [Tutorialspoint](https://www.tutorialspoint.com/ruby/index.htm)
+* [Tutorialspoint Ruby Tutorial](https://www.tutorialspoint.com/ruby/index.htm)
 
 
 ## 객체
