@@ -6,6 +6,25 @@
 * [Tutorialspoint Ruby Tutorial](https://www.tutorialspoint.com/ruby/index.htm)
 
 
+## 트릭
+
+[21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
+
+#### DRY by Enumerator
+
+```ruby
+%w(player room item).each { |x| require_relative x }
+```
+
+#### Exploding Enumerables
+
+```ruby
+a = %w(a b c d e f g)
+b = [2, 3, 5]
+a.values_at(*b)  # => ["c", "d", "f"]
+```
+
+
 ## 객체
 
 * 접근 제어
