@@ -5,6 +5,26 @@
 
 ## 스크립트
 
+### 속성
+
+* `[AddComponentMenu("MyScripts/SomeScript")]` : `Add` - `Component` 메뉴에 스크립트 추가
+
+* `[ExecuteInEditMode]` : 편집 모드에서 스크립트 실행
+
+* `[Header("Stats")]` : 인스펙터 변수 소제목 설정
+
+* `[HideInInspector]` : 인스펙터에서 `public` 변수 숨김
+
+* `[Range(-100, 100)]` : 속성의 범위 설정
+
+* `[RequireComponent(typeof(Rigidbody))]` : 해당 컴포넌트 추가
+
+* `[SerializeField]` : 인스펙터에 `private` 변수 표시
+
+* `[Space(10)]` : 인스펙터에서 변수 칸 간격 조절
+
+* `[System.Serializable]` : 인스펙터에 클래스 또는 구조체 표시
+
 ### MonoBehaviour
 
 * `Awake()`는 컴포넌트가 비활성화 상태라도 호출된다.
