@@ -5,26 +5,6 @@
 
 ## 스크립트
 
-### 속성
-
-* `[AddComponentMenu("MyScripts/SomeScript")]` : `Add` - `Component` 메뉴에 스크립트 추가
-
-* `[ExecuteInEditMode]` : 편집 모드에서 스크립트 실행
-
-* `[Header("Stats")]` : 인스펙터 변수 소제목 설정
-
-* `[HideInInspector]` : 인스펙터에서 `public` 변수 숨김
-
-* `[Range(-100, 100)]` : 속성의 범위 설정
-
-* `[RequireComponent(typeof(Rigidbody))]` : 해당 컴포넌트 추가
-
-* `[SerializeField]` : 인스펙터에 `private` 변수 표시
-
-* `[Space(10)]` : 인스펙터에서 변수 칸 간격 조절
-
-* `[System.Serializable]` : 인스펙터에 클래스 또는 구조체 표시
-
 ### MonoBehaviour
 
 * `Awake()`는 컴포넌트가 비활성화 상태라도 호출된다.
@@ -53,6 +33,59 @@
 ### Transform
 
 * `LookAt(target)` : `target`을 향해 `transform`을 회전한다.
+
+### 속성
+
+* `[AddComponentMenu("MyScripts/SomeScript")]` : `Add` - `Component` 메뉴에 스크립트 추가
+
+* `[ExecuteInEditMode]` : 편집 모드에서 스크립트 실행
+
+* `[Header("Stats")]` : 인스펙터 변수 소제목 설정
+
+* `[HideInInspector]` : 인스펙터에서 `public` 변수 숨김
+
+* `[Range(-100, 100)]` : 속성의 범위 설정
+
+* `[RequireComponent(typeof(Rigidbody))]` : 해당 컴포넌트 추가
+
+* `[SerializeField]` : 인스펙터에 `private` 변수 표시
+
+* `[Space(10)]` : 인스펙터에서 변수 칸 간격 조절
+
+* `[System.Serializable]` : 인스펙터에 클래스 또는 구조체 표시
+
+### 커스텀 인스펙터
+
+```cs
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+[CustomEditor(typeof(LevelScript))]
+public class LevelScriptEditor : Editor
+{
+  public override void OnInspectorGUI()
+  {
+    LevelScript levelScript = (LevelScript)target;
+    
+    levelScript.experience = EditorGUILayout.IntField("Experience", levelScript.experience);
+    EditorGUILayout.LabelField("Level", levelScript.Level.ToString());
+  }
+}
+```
+
+* `DrawDefaultInspector()`로 스크립트의 `public` 멤버들을 인스펙터에 표시할 수 있다.
+
+* `EditorGUILayout.HelpBox(string message, MessageType type)`로 인스펙터 상에 도움말을 표시할 수 있다.
+  * `MessageType` : `None`, `Info`, `Warning`, `Error`
+
+* 인스펙터에 버튼을 만들어 스크립트를 실행할 수 있다.
+  ```cs
+  if (GUILayout.Button("Run SomeMethod")
+  {
+    myScript.SomeMethod();
+  }
+  ```
 
 
 ## 컴포넌트
