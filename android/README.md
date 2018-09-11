@@ -2,13 +2,7 @@
 
 참고 강의 : [국방부오픈소스아카데미](http://osam.oss.kr) APP 개발 과정
 
-
-## 데이터 저장
-
-* SharedPreferences(셰어드 프리퍼런스) : DB보다 간단하고 편리하다. Editor로 데이터를 수정한다.
-* 내부 저장소 : 기본 탑재 저장소. 분리 불가능.
-* 외부 저장소 : SD카드 등 확장된 저장소. 내부 탑재지만 외부 저장소인 경우도 있다.
-* Sqlite DB
+* Android Studio 시작 메뉴의 Quick Start 탭에서 `Import an Android code sample`로 다양한 예시 프로젝트를 확인할 수 있다.
 
 
 ## 기타
@@ -62,6 +56,14 @@
 * Margin (`dp`) : 뷰 바깥쪽 여백
   * `android:layout_margin`
   * `android:layout_marginTop` 등
+
+
+## 데이터 저장
+
+* SharedPreferences(셰어드 프리퍼런스) : DB보다 간단하고 편리하다. Editor로 데이터를 수정한다.
+* 내부 저장소 : 기본 탑재 저장소. 분리 불가능.
+* 외부 저장소 : SD카드 등 확장된 저장소. 내부 탑재지만 외부 저장소인 경우도 있다.
+* Sqlite DB
 
 
 ## 백그라운드 작업

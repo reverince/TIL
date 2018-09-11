@@ -7,6 +7,7 @@ Today I Learned,
 * Node.js([nodejs/](https://github.com/reverince/TIL/tree/master/nodejs))
 * 안드로이드([android/](https://github.com/reverince/TIL/tree/master/android))
 * 언어([lang/](https://github.com/reverince/TIL/tree/master/lang))
+  * C#([lang/csharp.md](https://github.com/reverince/TIL/blob/master/lang/csharp.md))
   * 루비([ruby/](https://github.com/reverince/TIL/tree/master/lang/ruby))
 * 유니티([unity/](https://github.com/reverince/TIL/tree/master/unity))
 * 기타([etc/](https://github.com/reverince/TIL/tree/master/etc))
