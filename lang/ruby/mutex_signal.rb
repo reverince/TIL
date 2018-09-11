@@ -1,4 +1,3 @@
-
 threads = []
 mutex = Mutex.new
 cv = ConditionVariable.new

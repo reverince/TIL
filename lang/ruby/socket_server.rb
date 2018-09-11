@@ -1,4 +1,3 @@
-
 require "socket"
 
 port = 3000

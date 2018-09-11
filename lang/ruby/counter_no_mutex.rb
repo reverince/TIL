@@ -1,4 +1,3 @@
-
 COUNT_MAX = 5
 
 count = 0

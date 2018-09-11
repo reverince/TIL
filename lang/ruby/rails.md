@@ -1,5 +1,7 @@
 # Ruby on Rails
 
+상위 : [루비](https://github.com/reverince/TIL/tree/master/lang/ruby)
+
 * 라우터 : `config/routes.rb`
 
 * 스타일시트 : `app/assets/stylesheets`

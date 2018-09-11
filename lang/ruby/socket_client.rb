@@ -1,4 +1,3 @@
-
 require "socket"
 
 s = TCPSocket.open("localhost", 3000)
