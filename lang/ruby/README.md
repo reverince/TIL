@@ -1,6 +1,6 @@
 # Ruby
 
-하위 : [루비 스타일 가이드](/style_guide.md), [레일즈](/rails.md)
+하위 : [루비 스타일 가이드](./style_guide.md), [레일즈](./rails.md)
 
 * [Ruby-Doc.org](https://ruby-doc.org)
 * [Tutorialspoint Ruby Tutorial](https://www.tutorialspoint.com/ruby/index.htm)
