@@ -1,6 +1,6 @@
 # Ruby on Rails
 
-상위 : [루비](https://github.com/reverince/TIL/tree/master/lang/ruby)
+상위 : [루비](../ruby)
 
 * 라우터 : `config/routes.rb`
 

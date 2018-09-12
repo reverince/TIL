@@ -1,6 +1,6 @@
 # 루비 스타일 가이드
 
-상위 : [루비](https://github.com/reverince/TIL/tree/master/lang/ruby)
+상위 : [루비](../ruby)
 
 [Ruby Style Guide](https://github.com/styleguide/ruby) _by GitHub_
 
