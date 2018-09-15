@@ -10,6 +10,7 @@ Today I Learned,
   * 미로 생성 ([maze_generation.md](/algorithm/maze_generation.md))
 * 언어 ([lang/](/lang))
   * C# ([csharp.md](/lang/csharp.md))
+  * C++ ([cpp/](/lang/cpp))
   * 깃 ([git.md](/lang/git.md))
   * 루비 ([ruby/](/lang/ruby))
   * 마크다운 ([markdown.md](/lang/markdown.md))
