@@ -34,6 +34,8 @@
 
 ### API
 
+* [GitHub Developer](https://developer.github.com)
+
 * [네이버 개발자 센터](https://developers.naver.com/main)
 
 * [카카오 개발자](https://developers.kakao.com)
@@ -57,9 +59,13 @@
 
 * [gitignore.io](https://www.gitignore.io)
 
+* [Google Cloud](https://cloud.google.com)
+
 * [Heroku](https://www.heroku.com)
 
 * [Material Design](https://material.io)
+
+* [RegExr](http://regexr.com)
 
 * [구름IDE](https://ide.goorm.io)
 
