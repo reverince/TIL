@@ -3,6 +3,38 @@
 
 ## STL
 
+### 배열 (Arrays)
+
+```cpp
+const int Size = 3;
+
+int arr[Size] = {1, 2, -3};
+
+all_of(arr, arr+Size, [](int x) { return x > 0; })?
+  cout << "모든 요소가 양수입니다.\n" :
+  cout << "양수가 아닌 요소가 있습니다.\n";
+
+int arr2[Size];
+copy_n(arr, Size, arr2);  // 배열 복사
+
+iota(arr, arr+Size, 20)  //=> { 20, 21, 22 };
+```
+
+* `all_of()`, `any_of()`, `none_of()`
+* `copy_n()`
+* `iota(first, last, val)` : 연속된 값 저장
+  ```cpp
+  template <class ForwardIterator, class T>
+  void iota (ForwardIterator first, ForwardIterator last, T val)
+  {
+    while (first!=last) {
+      *first = val;
+      ++first;
+      ++val;
+    }
+  }
+  ```
+
 ### 컨테이너 (Containers)
 
 [Microsoft 설명서](https://msdn.microsoft.com/ko-kr/library/1fe2x6kt.aspx)
