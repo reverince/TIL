@@ -14,14 +14,14 @@ void printVector(vector<int> vc)
 void selectionSort(vector<int> &vc)
 {
   int end = vc.size() - 1;
-  for (int i = 0; i < end; ++i) {
+  for (int level = 0; level < end; ++level) {
     int indexMin = i;
-    for (int j = i + 1; j < vc.size(); ++j) {
+    for (int j = level + 1; j < vc.size(); ++j) {
       if (vc[j] < vc[indexMin]) {
         indexMin = j;
       }
     }
-    swap(vc[i], vc[indexMin]);
+    swap(vc[level], vc[indexMin]);
   }
 }
 
