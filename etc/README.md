@@ -7,6 +7,8 @@
 
 * 부모(Parent) 클래스 : 자식(Child) 클래스 = 기본(Base) 클래스 : 파생(Derived) 클래스
 
+* [온라인 알고리즘](https://ko.wikipedia.org/wiki/%EC%98%A8%EB%9D%BC%EC%9D%B8_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) : 시작할 때 모든 입력 정보를 가지고 있지 않고, 입력을 차례로 받아들이면서 처리하는 알고리즘 (↔오프라인 알고리즘)
+
 * [Garbage Collection](https://ko.wikipedia.org/wiki/가비지 컬렉션)(가비지 컬렉션; 쓰레기 수집) : 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기능
 
 * Seamless(심리스) : 틈 없이 이어지는 것
@@ -79,13 +81,9 @@
 
 ### 학습
 
-* [CodeCode Ninja](https://codecode.ninja) (유료)
-
 * [Envato Tuts+](https://tutsplus.com)
 
 * [Udacity](https://www.udacity.com)
-
-* [매일프로그래밍](https://mailprogramming.com)
 
 * [모두를 위한 머신러닝/딥러닝 강의](http://hunkim.github.io/ml)
 

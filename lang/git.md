@@ -14,6 +14,8 @@
 
 * `git rm` : 삭제된(`deleted:`) 파일 스테이징 가능
 
+* `git mv` : 파일 이동 혹은 이름 변경
+
 * `git clean` : 추적하지 않는(untracked) 파일 삭제
   * `-n` : 가짜로 실행(dry-run)해서 어떤 파일이 삭제될지 본다.
   * `-fdX` : `.gitignore`에 정의된 파일과 폴더만 삭제

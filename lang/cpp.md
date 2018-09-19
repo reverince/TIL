@@ -17,7 +17,7 @@ all_of(arr, arr+Size, [](int x) { return x > 0; })?
 int arr2[Size];
 copy_n(arr, Size, arr2);  // 배열 복사
 
-iota(arr, arr+Size, 20)  //=> { 20, 21, 22 };
+iota(arr, arr+Size, 20)  //=> {20, 21, 22};
 ```
 
 * `all_of()`, `any_of()`, `none_of()`

@@ -1,6 +1,6 @@
 # Regular Expression (Regex; 정규 표현식)
 
-[RegExr](http://regexr.com)
+[RegExr](http://regexr.com) : 정규표현식 테스트 사이트
 
 ## 활용
 
