@@ -4,7 +4,7 @@
     <title>Socket.IO chat</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
+      body { font: 14px; }
       form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
       form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
       form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
@@ -15,24 +15,51 @@
   </head>
   <body>
     <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+    <form id="join" action="">
+      <input id="name" autocomplete="off" /><button>참가</button>
+    </form>
+    <form id="chat" action="">
+      <input id="msg" autocomplete="off" /><button>전송</button>
     </form>
     
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
-      
-      $('form').submit(function() {
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
+      $(function() {
+        var socket = io();
+        var hasLoggedIn = false;
         
-        return false;
-      });
-      
-      socket.on('chat message', function(msg) {
-        $('#messages').append($('<li>').text(msg));
+        $('#chat').hide();
+        $('#name').focus();
+        
+        $('#join').submit(function() {
+          var name = $('#name').val();
+          if (name != '') {
+            socket.emit('join', name);
+            $('#join').hide();
+            $('#chat').show();
+            $('#msg').focus();
+            hasLoggedIn = true;
+          }
+          return false;
+        });
+        
+        $('#chat').submit(function() {
+          if (hasLoggedIn) {
+            socket.emit('chat message', $('#msg').val());
+            $('#msg').val('');
+          } else {
+            $('#chat').hide();
+            $('#join').show();
+            $('#name').focus();
+          }
+          return false;
+        });
+        
+        socket.on('chat message', function(msg) {
+          $('#messages').append($('<li>').text(msg));
+        });
+        
       });
     </script>
   </body>
