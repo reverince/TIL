@@ -27,7 +27,7 @@
     <script>
       $(function() {
         var socket = io();
-        var hasLoggedIn = false;
+        var hasJoined = false;
         
         $('#chat').hide();
         $('#name').focus();
@@ -36,16 +36,16 @@
           var name = $('#name').val();
           if (name != '') {
             socket.emit('join', name);
-            $('#join').hide();
+            $('#join').detach();
             $('#chat').show();
             $('#msg').focus();
-            hasLoggedIn = true;
+            hasJoined = true;
           }
           return false;
         });
         
         $('#chat').submit(function() {
-          if (hasLoggedIn) {
+          if (hasJoined) {
             socket.emit('chat message', $('#msg').val());
             $('#msg').val('');
           } else {
