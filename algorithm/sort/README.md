@@ -64,3 +64,51 @@ void insertionSort(vector<int> &vc) {
   }
 }
 ```
+
+## 번외
+
+### 취침 정렬 (Sleep Sort)
+
+1. 각 요소에 대해 스레드를 만들어 값에 비례하는 시간만큼 잔다.
+1. 다 잤으면 결과 행렬 맨 뒤에 요소를 삽입한다.
+
+```ruby
+def sleep_sort(vc, sleep_time=0.1)
+  
+  ret = []
+  threads = []
+
+  vc.each { |n|
+    threads << Thread.new { sleep(n * sleep_time); ret << n}
+  }
+
+  threads.each { |thr| thr.join }
+
+  ret
+end
+
+vc = [2, 5, 9, 3, 4, 8, 7, 1, 6]
+1.upto(24) { |i|
+  sleep_time = 1.0 / i.to_f
+  puts "sleep_time: 1/" + i.to_s + " sec"
+  puts "result: [" + sleep_sort(vc, sleep_time)*", " + "]"
+}
+```
+
+```
+sleep_time: 1/1 sec
+result: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+sleep_time: 1/2 sec
+result: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+...
+sleep_time: 1/21 sec
+result: [2, 1, 3, 4, 5, 6, 8, 7, 9]
+sleep_time: 1/22 sec
+result: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+sleep_time: 1/23 sec
+result: [1, 2, 3, 4, 5, 6, 9, 7, 8]
+sleep_time: 1/24 sec
+result: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+틀리는 게 귀엽다.
