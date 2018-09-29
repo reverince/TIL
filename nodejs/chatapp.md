@@ -1,4 +1,4 @@
-# [Node.js] Chat
+# [Socket.io] Chat (`chatapp/`)
 
 https://socket.io/get-started/chat
 
@@ -117,51 +117,101 @@ http.listen(port, function() {
 
   });
   ```
-  
+
   ```js
-  <script>
-    $(function() {
-      var socket = io();
-      var hasJoined = false;
+    var socket = io();
+    var hasJoined = false;
 
-      $('#chat').hide();
-      $('#name').focus();
+    $('#chat').hide();
+    $('#name').focus();
 
-      $('#join').submit(function() {
-        var name = $('#name').val();
-        if (name != '') {
-          socket.emit('join', name);
-          $('#join').detach();
-          $('#chat').show();
-          $('#msg').focus();
-          hasJoined = true;
-        }
-        return false;
-      });
-
-      $('#chat').submit(function() {
-        if (hasJoined) {
-          socket.emit('chat message', $('#msg').val());
-          $('#msg').val('');
-        } else {
-          $('#chat').hide();
-          $('#join').show();
-          $('#name').focus();
-        }
-        return false;
-      });
-
-      socket.on('chat message', function(msg) {
-        $('#messages').append($('<li>').text(msg));
-      });
-
+    $('#join').submit(function() {
+      var name = $('#name').val();
+      if (name != '') {
+        socket.emit('join', name);
+        $('#join').detach();
+        $('#chat').show();
+        $('#msg').focus();
+        hasJoined = true;
+      }
+      return false;
     });
-  </script>
+
+    $('#chat').submit(function() {
+      if (hasJoined) {
+        socket.emit('chat message', $('#msg').val());
+        $('#msg').val('');
+      } else {
+        $('#chat').hide();
+        $('#join').show();
+        $('#name').focus();
+      }
+      return false;
+    });
+
+    socket.on('chat message', function(msg) {
+      $('#messages').append($('<li>').text(msg));
+    });
   ```
-  
+
   * `if (name != undefined)`와 `hasJoined`로 각각 서버와 클라이언트에서 유저의 참가 여부를 확인한다.
 
 * '입력 중'
+
+  ```js
+  socket.on('disconnect', function() {
+    name = names[socket.id];
+    if (name != undefined) {
+      console.log('유저 접속 해제: ' + name);
+      io.emit('chat message', DISCONNECTED_MESSAGE_WITH + name);
+      delete names[socket.id];
+      typers.delete(name);
+      updateTypers();
+    }
+  });
+
+  socket.on('typing', function(isTyping) {
+    name = names[socket.id];
+    if (name != undefined) {
+      if (isTyping) {
+        if (socket.id in typers) {
+          // Do nothing
+        } else {
+          typers.add(name);
+        }
+      } else {
+        typers.delete(name);
+      }
+      updateTypers();
+    }
+  });
+
+  function updateTypers() {
+    if (typers.size > 0) {
+      typersJoined = Array.from(typers).join(', ');
+      io.emit('typer notice', TYPER_MESSAGE_WITH + typersJoined)
+    } else {
+      io.emit('typer notice', '');
+    }
+  }
+  ```
+
+  ```js
+  socket.on('typer notice', function(msg) {
+    $('#typers').text(msg);
+  });
+
+  const TYPING_TIMEOUT = 1000;  // 밀리초
+  var typingTimeout;
+  $('#msg').on('keyup', function() {
+    socket.emit('typing', true);
+    if (typingTimeout != undefined) clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(stopTyping, TYPING_TIMEOUT);
+  });
+  function stopTyping() {
+      socket.emit('typing', false);
+  }
+  ```
 
 * 접속 목록
 
