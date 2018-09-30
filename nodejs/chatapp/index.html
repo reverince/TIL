@@ -8,13 +8,16 @@
       form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
       form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
       form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #typers { padding: 5px 10px; }
+      p { padding: 5px 10px; }
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
     </style>
   </head>
   <body>
+    <div>
+      <p id="users"></p>
+    </div>
     <div>
       <p id="typers"></p>
     </div>
@@ -33,24 +36,42 @@
         var socket = io();
         var hasJoined = false;
         
+        const NO_SPACES_IN_NAME_MESSAGE = '이름은 공백을 포함할 수 없어요.'
+        
         $('#chat').hide();
         $('#name').focus();
         
         $('#join').submit(function() {
           var name = $('#name').val();
           if (name != '') {
-            socket.emit('join', name);
-            $('#join').detach();
-            $('#chat').show();
-            $('#msg').focus();
-            hasJoined = true;
+            if (name.match(' ') != null) {
+              $('#messages').append($('<li>').text(NO_SPACES_IN_NAME_MESSAGE));
+              $('#name').val('');
+            } else {
+              socket.emit('join', name);
+              $('#join').detach();
+              $('#chat').show();
+              $('#msg').focus();
+              hasJoined = true;
+            }
           }
           return false;
         });
         
         $('#chat').submit(function() {
           if (hasJoined) {
-            socket.emit('chat message', $('#msg').val());
+            var msg = $('#msg').val();
+            var msgArr = msg.split(' ');
+            var cmd = msgArr[0];
+            if (cmd == '/tell') {
+              if (msgArr.length >= 3) {
+                var to = msgArr[1];
+                var msg = msgArr.slice(2).join(' ');
+                socket.emit('direct message', to, msg);
+              }
+            } else if (msg.length > 0) {
+              socket.emit('chat message', msg);
+            }
             $('#msg').val('');
           } else {
             $('#chat').hide();
@@ -64,7 +85,11 @@
           $('#messages').append($('<li>').text(msg));
         });
         
-        socket.on('typer notice', function(msg) {
+        socket.on('update users', function(msg) {
+          $('#users').text(msg);
+        });
+        
+        socket.on('update typers', function(msg) {
           $('#typers').text(msg);
         });
         

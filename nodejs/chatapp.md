@@ -9,7 +9,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3000;
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
@@ -93,12 +93,12 @@ http.listen(port, function() {
 
     socket.on('join', function(name) {
       names[socket.id] = name;
-      console.log('유저 접속: ' + name);
+      console.log('유저 참가: ' + name);
       io.emit('chat message', CONNECTED_MESSAGE_WITH + name);
     });
 
     socket.on('disconnect', function() {
-      name = names[socket.id];
+      var name = names[socket.id];
       if (name != undefined) {
         console.log('유저 접속 해제: ' + name);
         io.emit('chat message', DISCONNECTED_MESSAGE_WITH + name);
@@ -159,8 +159,12 @@ http.listen(port, function() {
 * '입력 중'
 
   ```js
+  var typers = new Set();
+  
+  ...
+  
   socket.on('disconnect', function() {
-    name = names[socket.id];
+    var name = names[socket.id];
     if (name != undefined) {
       console.log('유저 접속 해제: ' + name);
       io.emit('chat message', DISCONNECTED_MESSAGE_WITH + name);
@@ -171,7 +175,7 @@ http.listen(port, function() {
   });
 
   socket.on('typing', function(isTyping) {
-    name = names[socket.id];
+    var name = names[socket.id];
     if (name != undefined) {
       if (isTyping) {
         if (socket.id in typers) {
@@ -188,16 +192,16 @@ http.listen(port, function() {
 
   function updateTypers() {
     if (typers.size > 0) {
-      typersJoined = Array.from(typers).join(', ');
-      io.emit('typer notice', TYPER_MESSAGE_WITH + typersJoined)
+      var typersJoined = Array.from(typers).join(', ');
+      io.emit('update typers', TYPERS_NOTICE_WITH + typersJoined);
     } else {
-      io.emit('typer notice', '');
+      io.emit('update typers', '');
     }
   }
   ```
 
   ```js
-  socket.on('typer notice', function(msg) {
+  socket.on('update typers', function(msg) {
     $('#typers').text(msg);
   });
 
@@ -213,6 +217,69 @@ http.listen(port, function() {
   }
   ```
 
-* 접속 목록
+* 참가 목록
+
+  ```js
+  var _ = require('lodash');
+  
+  ...  // join, disconnect에서 updateUsers() 실행
+  
+  function updateUsers() {
+    var usersJoined = _.values(names).join(', ');
+    io.emit('update users', USERS_NOTICE_WITH + usersJoined);
+  }
+  ```
+
+  ```js
+  socket.on('update users', function(msg) {
+    $('#users').text(msg);
+  });
+  ```
 
 * DM
+
+  ```js
+  socket.on('direct message', function(to, msg) {
+    var idx = _.values(names).indexOf(to);
+    if (idx > -1) {
+      var id = _.keys(names)[idx];
+      var from = names[socket.id];
+      var msg = '[DM] ' + from + ' → ' + to + ' : ' + msg;
+      socket.emit('chat message', msg);
+      io.to(id).emit('chat message', msg);
+    } else {
+      socket.emit('chat message', CANNOT_FIND_USER_MESSAGE);
+    }
+  });
+  ```
+
+  ```js
+  $('#chat').submit(function() {
+    if (hasJoined) {
+      var msg = $('#msg').val();
+      var msgArr = msg.split(' ');
+      var cmd = msgArr[0];
+      if (cmd == '/tell') {
+        if (msgArr.length >= 3) {
+          var to = msgArr[1];
+          var msg = msgArr.slice(2).join(' ');
+          socket.emit('direct message', to, msg);
+        }
+      } else if (msg.length > 0) {
+        socket.emit('chat message', msg);
+      }
+      $('#msg').val('');
+    } else {
+      $('#chat').hide();
+      $('#join').show();
+      $('#name').focus();
+    }
+    return false;
+  });
+  ```
+
+## TODO
+
+* 닉네임 중복 금지
+
+* 가짜 시스템 메시지 금지
