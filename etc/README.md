@@ -12,7 +12,7 @@
 * [Garbage Collection](https://ko.wikipedia.org/wiki/가비지 컬렉션)(가비지 컬렉션; 쓰레기 수집) : 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기능
 
 * Seamless(심리스) : 틈 없이 이어지는 것
-  * 예컨대 심리스 업데이트라면 업데이트할 때 기존 실행 중인 프로세스를 종료하지 않아도 된다.
+  * 심리스 업데이트라면 업데이트할 때 기존 실행 중인 프로세스를 종료하지 않아도 된다.
   * 게임에 심리스 로딩이 적용됐다면 씬을 이동할 때 로딩 화면을 기다리지 않아도 된다.
 
 * Socket(소켓) : 컴퓨터 네트워크를 경유하는 프로세스 간 통신의 종착점
@@ -49,7 +49,10 @@
 * [Topcoder](https://arena.topcoder.com/index.html#/u/dashboard)
 
 * [백준 온라인저지](https://www.acmicpc.net)
+
   * [대회 캘린더](https://www.acmicpc.net/calendar)
+
+* [알고스팟](https://algospot.com/wiki/read/%EC%95%8C%EA%B3%A0%EC%8A%A4%ED%8C%9F_%EC%98%A8%EB%9D%BC%EC%9D%B8_%EC%A0%80%EC%A7%80)
 
 * [코드그라운드](https://www.codeground.org)
 
@@ -94,4 +97,4 @@
 
 ## 유용한 포스트
 
-* [유의적 버전 2.0.0](https://semver.org/lang/ko/)
+* [유의적 버전 2.0.0](https://semver.org/lang/ko)

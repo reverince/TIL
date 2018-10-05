@@ -6,6 +6,7 @@ Today I Learned,
 
 * Node.js ([nodejs/](/nodejs))
   * 채팅 앱 ([chatapp.md](/nodejs/chatapp.md))
+* Rails ([rails/](/rails))
 * 안드로이드 ([android/](/android))
 * 알고리즘 ([algorithm/](/algorithm))
   * 미로 생성 ([maze_generation.md](/algorithm/maze_generation.md))

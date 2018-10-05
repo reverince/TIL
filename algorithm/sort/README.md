@@ -1,4 +1,4 @@
-# Sort
+# 정렬
 
 [정렬 알고리즘](https://ko.wikipedia.org/wiki/정렬_알고리즘)
 
