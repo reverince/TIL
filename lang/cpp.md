@@ -3,7 +3,33 @@
 
 ## STL
 
-### 배열 (Arrays)
+### 반복자 (Iterator)
+
+* 입력 반복자 : 단방향 한 번 종주 가능
+* 전방 반복자 : 단방향으로 여러 번 종주 가능
+* 양방향 반복자 : 양방향으로 여러 번 종주 가능
+* 임의 접근 반복자 : 배열처럼 상수 시간에 임의 접근 가능
+
+#### 반복자 속성
+
+* `iterator_traits<T>::value_type`
+* `iterator_traits<T>::difference_type`
+* `iterator_traits<T>::iterator_category`
+
+#### 관련 함수
+
+* `std::advance(it, n)` : `it` 반복자를 `n`칸 다음으로 전진시킨다.
+* `std::partition_point(first, last, pred)` : 참 또는 거짓을 반환하는 `pred` 함수에 의해 두 파티션으로 나뉜 컨테이너에서 첫 번째 파티션의 끝 반복자를 반환한다.
+
+### 컨테이너 (Container)
+
+[Microsoft 설명서](https://msdn.microsoft.com/ko-kr/library/1fe2x6kt.aspx)
+
+#### 순차 컨테이너 (Sequence Container)
+
+요소가 삽입된 순서를 유지하는 컨테이너.
+
+##### 배열 (Array)
 
 ```cpp
 const int Size = 3;
@@ -34,14 +60,6 @@ iota(arr, arr+Size, 20)  //=> {20, 21, 22};
     }
   }
   ```
-
-### 컨테이너 (Containers)
-
-[Microsoft 설명서](https://msdn.microsoft.com/ko-kr/library/1fe2x6kt.aspx)
-
-#### 순차 컨테이너 (Sequence Containers)
-
-요소가 삽입된 순서를 유지하는 컨테이너.
 
 ##### 벡터 (`vector`)
 
@@ -83,7 +101,7 @@ void printList(list<int> li) {
 
 단일 연결 리스트를 구현한다. 즉 리스트와 달리 다음 요소의 주소만을 추적하기 때문에 이전 요소로 직접 접근할 수 없다.
 
-#### 연관 컨테이너 (Associative Containers)
+#### 연관 컨테이너 (Associative Container)
 
 요소의 순서가 미리 정해져 있거나 순서 개념이 없다. [키-값](https://ko.wikipedia.org/wiki/%ED%82%A4-%EA%B0%92_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4) 참조.
 
@@ -114,7 +132,7 @@ void printMap(map<int, int> mp) {
 }
 ```
 
-#### 컨테이너 어댑터 (Container Adaptors)
+#### 컨테이너 어댑터 (Container Adaptor)
 
 기능이 제한되거나 변형된 컨테이너. 반복자를 지원하지 않는다.
 
@@ -124,3 +142,17 @@ void printMap(map<int, int> mp) {
 
 * 우선순위 큐(`priority_queue`) : 값이 자동으로 정렬되는 큐. 기본적으로 높은 값부터 pop된다. `#include <queue>`가 필요하다.
   * `priority_queue<T, vector<T>, greater<T>>`로 선언하면 작은 값을 우선한다. `vector<T>`는 큐의 구현체.
+
+
+## 람다 식 (Lambda Expression)
+
+[Microsoft 설명서](https://msdn.microsoft.com/ko-kr/library/dd293608.aspx)
+
+```cpp
+[=](int x)->int { return x * x; }
+```
+
+* `[]` : 람다 식에서 캡처(사용)할 외부 변수. 비워두면 사용하지 않고, `=`이면 전부 사용하고, `&`면 참조형으로 캡처하는 등. 변수명을 특정할 수 있다. 전역 변수는 기본적으로 사용한다.
+* `()` : 람다 식이 받는 인자
+* `->` : 람다 식이 반환하는 자료형 (생략 가능)
+* `{}` : 식 내용

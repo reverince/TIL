@@ -26,7 +26,48 @@ a.values_at(*b)  # => ["c", "d", "f"]
 
 ## 블록 / `Proc` / `lambda`
 
+### [블록](https://www.tutorialspoint.com/ruby/ruby_blocks.htm)
 
+```ruby
+def blk
+  puts "블록의 시작"
+  yield
+  puts "블록의 중간"
+  yield
+  puts "블록의 끝"
+end
+
+blk { puts "여긴 어디야?" }
+```
+```
+블록의 시작
+여긴 어디야?
+블록의 중간
+여긴 어디야?
+블록의 끝
+```
+
+### `Proc`
+
+```ruby
+new_prc = Proc.new { puts "Hello, new Proc!" }
+new_prc.call()
+new_prc.()
+new_prc[]
+
+prc = proc {puts "Hello, Kernel#proc!" }
+```
+
+### `lambda`
+
+```ruby
+lmd = lambda { puts "Hello, lambda!" }
+lmd.call()
+lmd.()
+lmd[]
+
+sweet_lmd = ->{ puts "Hello, ->!" }
+```
 
 
 ## 객체
