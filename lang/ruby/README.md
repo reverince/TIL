@@ -24,27 +24,107 @@ b = [2, 3, 5]
 a.values_at(*b)  # => ["c", "d", "f"]
 ```
 
+
+## 문법
+
+```ruby
+=begin
+여러 줄 주석
+=end
+
+i = 0
+# 한 줄 반복문
+puts i until (i+=1) >= 10
+# 여러 줄 반복문
+begin
+  puts i
+end while (i-=1) >= 1
+
+# 재도전 (retry)
+c = '7'
+begin
+  p c + 3
+rescue TypeError
+  c = c.to_i
+  retry  # begin으로
+end
+
+# 별명 (alias)
+def a_very_long_method_name
+  return true
+end
+alias a_ a_very_long_method_name
+a_()
+```
+
+
+## 변수
+
+```ruby
+$gv = 1
+@iv = 2
+@@cv = 3
+
+def puts_v
+  puts "전역 변수 g는 #$g"
+  puts "인스턴스 변수 i는 #@i"
+  puts "클래스 변수 c는 #@@c"
+end
+```
+
+
+## 리터럴 (Literal)
+
+```ruby
+0b1011  # 2진수
+0127  # 8진수
+0x1f  # 16진수
+?a  # 'a' 문자 코드
+?\n  # newline 코드
+1.0e6
+```
+
+
+## [연산자](https://www.tutorialspoint.com/ruby/ruby_operators.htm)
+
+* `.eql?` : 자료형과 값이 같은지 확인한다.
+* `.equal?` : 객체 ID가 같은지 확인한다.
+* `defined?` : 변수나 메소드 등이 정의되었는지 확인한다.
+
 ## 블록 / `Proc` / `lambda`
 
 ### [블록](https://www.tutorialspoint.com/ruby/ruby_blocks.htm)
 
 ```ruby
 def blk
-  puts "블록의 시작"
-  yield
-  puts "블록의 중간"
-  yield
-  puts "블록의 끝"
+  puts "~블록의 시작~"
+  yield "1층"
+  puts "~블록의 중간~"
+  yield "2층"
+  puts "~블록의 끝~"
 end
 
-blk { puts "여긴 어디야?" }
+blk { |loc| puts "여긴 #{loc}이에요." }
 ```
 ```
-블록의 시작
-여긴 어디야?
-블록의 중간
-여긴 어디야?
-블록의 끝
+~블록의 시작~
+여긴 1층이에요.
+~블록의 중간~
+여긴 2층이에요.
+~블록의 끝~
+```
+
+#### `BEGIN` / `END`
+
+```ruby
+BEGIN {
+  # MAIN보다 먼저 실행
+}
+END {
+  # MAIN 이후에 실행
+}
+# MAIN
+...
 ```
 
 ### `Proc`
