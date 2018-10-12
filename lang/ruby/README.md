@@ -41,7 +41,7 @@ begin
 end while (i-=1) >= 1
 
 # 재도전 (retry)
-c = '7'
+c = "7"
 begin
   p c + 3
 rescue TypeError
@@ -55,6 +55,20 @@ def a_very_long_method_name
 end
 alias a_ a_very_long_method_name
 a_()
+```
+
+
+## 배열
+
+```ruby
+pois = Array.new(5, "poi")
+# => ["poi", "poi", "poi", "poi", "poi"]
+growing_pois = Array.new(5) {|i| "poi" * i}
+# => ["", "poi", "poipoi", "poipoipoi", "poipoipoipoi"]
+
+poipois = pois.collect {|i| i*2}
+# => ["poipoi", "poipoi", "poipoi", "poipoi", "poipoi"]
+
 ```
 
 
@@ -171,6 +185,22 @@ sweet_lmd = ->{ puts "Hello, ->!" }
   puts Class::CLASSCONST
   ```
 
+
+## [예약 변수](https://www.tutorialspoint.com/ruby/ruby_predefined_variables.htm) (Predefined Variable)
+
+* `$!` : 마지막 오류(Exception). `rescue Exception => e`의 `e`처럼 접근할 수 있다.
+* `$@` : 마지막 오류의 백트레이스.
+* `$/` : 입력 분리자. 기본값은 `\n`.
+* `$\` : 출력 분리자. 기본값은 `nil`.
+* `$,` : `print()`와 `Array#join` 메소드의 분리자. 기본값은 `nil`.
+* `$;` : `String#split`의 분리자. 기본값은 `nil`.
+* `$_` : 로컬에서 `gets`나 `readline`으로 입력받은 마지막 값. 기본값은 `nil`.
+* `$~` : 로컬에서 `Regex#match`에 의한 마지막 매치 데이터(`MatchData`).
+* `$&` : 로컬에서 `Regex#match`에 의한 마지막 매치 문자열.
+* `$0` : 지금 실행 중인 루비 프로그램 이름.
+* `$$` : 지금 실행 중인 루비 프로그램 PID.
+* `$?` : 마지막으로 종료된 프로세스의 종료 상태(exit status).
+* `$DEBUG`(`$-d`) : `-debug` 혹은 `-d` 옵션 적용 여부.
 
 ## [소켓](https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/Socket.html)
 
