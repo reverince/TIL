@@ -1,4 +1,4 @@
-# [온라인 코딩 파티 2018 시즌 2 ~나도 프로그래머다~](https://codingparty.goorm.io/#university)
+# [온라인 코딩 파티 2018 시즌 2 \~나도 프로그래머다\~](https://codingparty.goorm.io/#university)
 
 
 ## 예선 - 1번 문제
@@ -79,4 +79,62 @@ res = []
 for a in arr:
   res.append(a[3])
 print('\n'.join(res), end='')
+```
+
+
+## 예선 - 2번 문제
+
+#### 문제
+
+각 자리마다 최댓값이 다른 계수기를 구현한다.
+
+#### 입력
+
+1. 숫자판의 개수 m
+1. 각 숫자판의 최댓값 m개
+1. 각 숫자판의 초깃값 m개
+1. 버튼을 누르는 횟수
+
+### 풀이?
+
+```ruby
+m = gets.to_i
+max_nums = gets.split.map(&:to_i)
+init_nums = gets.split.map(&:to_i)
+push_cnt = gets.to_i
+
+valid = true
+m.times { |i| valid = false if max_nums[i] < init_nums[i] }
+m.times { |i| valid = false if max_nums[i] < 0 || max_nums[i] > 9 || init_nums[i] < 0 || init_nums[i] > 9 }
+if valid
+	muls = []  # 해당 자릿수의 멀티플라이어
+	muls << ((max_nums[-1] > 0) ? 1 : 0)
+	mul = 1
+	(m-1).times { |i|
+		mul *= max_nums[-1-i] + 1 if max_nums[-1-i] > 0
+		muls.unshift((max_nums[-2-i] > 0) ? mul : 0)
+	}
+
+	val = push_cnt
+	m.times { |i| val += init_nums[i] * muls[i] }
+
+	res = []
+	muls.each { |n|
+		if n > 0
+			res << (val/n)
+			val %= n
+		else
+			res << 0
+		end
+	}
+	m.times { |i| res[i] %= max_nums[i] + 1 }
+
+	print(res.join(''))
+else
+	print('-1')
+end
+```
+
+```
+오답입니다. (통과하지 못한 테스트케이스가 있습니다.)
 ```
