@@ -91,11 +91,17 @@ print('\n'.join(res), end='')
 #### 입력
 
 1. 숫자판의 개수 m
-1. 각 숫자판의 최댓값 m개
-1. 각 숫자판의 초깃값 m개
+1. 공백으로 구분된, 각 숫자판의 최댓값 m개
+1. 공백으로 구분된, 각 숫자판의 초깃값 m개
 1. 버튼을 누르는 횟수
 
-### 풀이?
+#### 출력
+
+계수기 숫자판 상태를 공백 없이 한 줄로 출력한다.
+
+### 풀이(X)
+
+계수기가 저장하고 있는 값을 십진수로 변환해 누른 횟수와 더하고 다시 계수기의 표현 방식으로 변환한다.
 
 ```ruby
 m = gets.to_i
@@ -137,4 +143,56 @@ end
 
 ```
 오답입니다. (통과하지 못한 테스트케이스가 있습니다.)
+```
+
+## 예선 - 3번 문제
+
+#### 입력
+
+공백으로 구분된, 높이와 너비
+
+#### 출력
+
+주어진 높이와 너비의 직사각형 체스 판 위에서, 맨 왼쪽 위 칸에서 출발한 나이트에 대해,
+
+1. 나이트가 모든 칸에 도달할 수 있는지 여부 `T` / `F`
+1. 최대 거리
+
+이상을 한 줄에 공백 없이 한 줄로 출력한다.
+
+### 풀이(?)
+
+```ruby
+MOVES = [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]]
+
+w, h = gets.split.map(&:to_i)
+
+cells = Array.new(h) { Array.new(w) }
+cells[0][0] = 0
+
+filled_cnt = 1
+area = w * h
+
+locations = [[0, 0]]
+move_cnt = 1
+while filled_cnt < area do
+	next_locations = []
+	filled_cnt_before = filled_cnt
+	locations.each { |y, x|
+		MOVES.each { |dy, dx|
+			ny, nx = y+dy, x+dx
+			if ny.between?(0, h-1) && nx.between?(0, w-1) && cells[ny][nx].nil?
+				cells[ny][nx] = move_cnt
+				filled_cnt += 1
+				next_locations << [ny, nx]
+			end
+		}
+	}
+	locations = next_locations
+	break if filled_cnt_before == filled_cnt
+	move_cnt += 1
+end
+
+print ((filled_cnt == area) ? 'T' : 'F')
+print move_cnt-1
 ```
