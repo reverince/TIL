@@ -2,6 +2,17 @@
 
 [RegExr](http://regexr.com) : 정규표현식 테스트 사이트
 
+## 파이썬
+
+```python
+import re
+regex = '(?P<year>\d+)\/(?P<month>\d+)\/(?P<day>\d+)'
+s = '2018/12/13'
+search = re.search(regex, s)
+if search is not None:
+  print(search.group('year'))  # => 2018
+```
+
 ## 활용
 
 * `/(?<target>[0-9A-Za-z가-힣]+)[을를] +/ =~ ipt` : 문자열 `ipt`에서 목적격 조사(`을`, `를`)가 붙은 단어를 찾아 변수 `target`에 저장한다.

@@ -12,6 +12,9 @@
   * `-A` : 추적하지 않는 파일도 스테이징
   * `-f *` : `.gitignore`의 파일도 스테이징
 
+* `git commit` 옵션
+  * `--amend` : 마지막 커밋 (메시지) 수정 (이후 `git push --force` 필요)
+
 * `git rm` : 삭제된(`deleted:`) 파일 스테이징 가능
 
 * `git mv` : 파일 이동 혹은 이름 변경

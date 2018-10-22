@@ -63,11 +63,14 @@ a_()
 ```ruby
 pois = Array.new(5, "poi")
 # => ["poi", "poi", "poi", "poi", "poi"]
+
 growing_pois = Array.new(5) {|i| "poi" * i}
 # => ["", "poi", "poipoi", "poipoipoi", "poipoipoipoi"]
 
-poipois = pois.collect {|i| i*2}
+poipois = pois.collect {|i| i * 2}
 # => ["poipoi", "poipoi", "poipoi", "poipoi", "poipoi"]
+
+multi_dims = Array.new(h) { Array.new(w) }
 
 ```
 
@@ -201,6 +204,7 @@ sweet_lmd = ->{ puts "Hello, ->!" }
 * `$$` : 지금 실행 중인 루비 프로그램 PID.
 * `$?` : 마지막으로 종료된 프로세스의 종료 상태(exit status).
 * `$DEBUG`(`$-d`) : `-debug` 혹은 `-d` 옵션 적용 여부.
+
 
 ## [소켓](https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/Socket.html)
 

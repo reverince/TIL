@@ -17,6 +17,8 @@
 
 * Socket(소켓) : 컴퓨터 네트워크를 경유하는 프로세스 간 통신의 종착점
 
+* [Syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)(신택스 슈거) : 더 간결하거나 명확한 형태를 사용해, 이해하거나 표현하기 쉽게 설계된 신택스. 루비의 `->`나 C++의 `++` 등
+
 ### 약어
 
 * [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development)(Behavior-driven Development; 행위 주도 개발)
@@ -85,6 +87,8 @@
 ### 학습
 
 * [Envato Tuts+](https://tutsplus.com)
+
+* [Tutorialspoint](https://www.tutorialspoint.com/index.htm)
 
 * [Udacity](https://www.udacity.com)
 
