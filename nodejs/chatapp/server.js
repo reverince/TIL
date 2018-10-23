@@ -7,31 +7,38 @@ var port = process.env.PORT || 3000;
 var names = {};
 var typers = new Set();
 
-const CONNECTED_MESSAGE_WITH = '[SYS] 새로운 유저가 접속했어요: ';
-const DISCONNECTED_MESSAGE_WITH = '[SYS] 유저가 접속을 해제했어요: ';
-const PLEASE_JOIN_MESSAGE = '[SYS] 새로고침해서 이름을 정해 주세요.';
-const USERS_NOTICE_WITH = '[SYS] 참가 중인 유저: ';
-const TYPERS_NOTICE_WITH = '[SYS] 입력 중인 유저: ';
-const CANNOT_FIND_USER_MESSAGE = '[SYS] 해당 유저를 찾을 수 없어요.';
+const SYS = '[SYS]';
+const CONNECTED_MESSAGE_WITH = '새로운 유저가 접속했어요: ';
+const DISCONNECTED_MESSAGE_WITH = '유저가 접속을 해제했어요: ';
+const PLEASE_JOIN_MESSAGE = '새로고침해서 이름을 정해 주세요.';
+const USERS_NOTICE_WITH = '참가 중인 유저: ';
+const TYPERS_NOTICE_WITH = '입력 중인 유저: ';
+const CANNOT_FIND_USER_MESSAGE = '해당 유저를 찾을 수 없어요.';
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function(socket) {
+io.on('connection', (socket) => {
   
-  socket.on('join', function(name) {
+  socket.on('join', (name) => {
     names[socket.id] = name;
     console.log('유저 참가: ' + name);
-    io.emit('chat message', CONNECTED_MESSAGE_WITH + name);
+    let data = {"name": SYS, "message": CONNECTED_MESSAGE_WITH + name};
+    io.emit('chat message', data);
+    var msg = data["message"];
+    io.emit('toast', msg);
     updateUsers();
   });
   
-  socket.on('disconnect', function() {
+  socket.on('disconnect', () => {
     var name = names[socket.id];
     if (name != undefined) {
       console.log('유저 접속 해제: ' + name);
-      io.emit('chat message', DISCONNECTED_MESSAGE_WITH + name);
+      let data = {"name": SYS, "message": DISCONNECTED_MESSAGE_WITH + name};
+      io.emit('chat message', data);
+      var msg = data["message"];
+      io.emit('toast', msg);
       delete names[socket.id];
       updateUsers();
       typers.delete(name);
@@ -39,17 +46,20 @@ io.on('connection', function(socket) {
     }
   });
   
-  socket.on('chat message', function(msg) {
+  socket.on('chat message', (msg) => {
     if (socket.id in names) {
-      console.log('메시지: ' + msg);
-      io.emit('chat message', names[socket.id] + ': ' + msg);
+      var author = names[socket.id];
+      console.log(author + ': ' + msg);
+      let data = {"name": author, "message": msg};
+      io.emit('chat message', data);
     } else {
       console.log('미참가 유저의 채팅 시도: ' + socket.id);
-      socket.emit('chat message', PLEASE_JOIN_MESSAGE);
+      let data = {"name": SYS, "message": PLEASE_JOIN_MESSAGE};
+      socket.emit('chat message', data);
     }
   });
   
-  socket.on('typing', function(isTyping) {
+  socket.on('typing', (isTyping) => {
     var name = names[socket.id];
     if (name != undefined) {
       if (isTyping) {
@@ -65,17 +75,23 @@ io.on('connection', function(socket) {
     }
   });
   
-  socket.on('direct message', function(to, msg) {
+  socket.on('direct message', (to, msg) => {
     var idx = _.values(names).indexOf(to);
     if (idx > -1) {
       var id = _.keys(names)[idx];
       var from = names[socket.id];
       var msg = '[DM] ' + from + ' → ' + to + ' : ' + msg;
-      socket.emit('chat message', msg);
-      io.to(id).emit('chat message', msg);
+      let data = {"name": from, "message": msg};
+      socket.emit('chat message', data);
+      io.to(id).emit('chat message', data);
     } else {
-      socket.emit('chat message', CANNOT_FIND_USER_MESSAGE);
+      let data = {"name": SYS, "message": CANNOT_FIND_USER_MESSAGE};
+      socket.emit('chat message', data);
     }
+  });
+  
+  socket.on('new room', (room) => {
+    io.to(room).emit('chat message', data);
   });
   
   function updateUsers() {
@@ -94,6 +110,6 @@ io.on('connection', function(socket) {
   
 });
 
-http.listen(port, function() {
+http.listen(port, () => {
   console.log('Server running at https://levnode.run.goorm.io');
 });
