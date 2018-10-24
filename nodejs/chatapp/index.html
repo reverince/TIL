@@ -84,7 +84,8 @@
         socket.on('chat message', function(data) {
           var name = data["name"];
           var msg = data["message"];
-          $('#messages').append($('<li>').text(name+': '+msg));
+          var color = data["color"];
+          $('#messages').append($('<li>').append($('<span>').text(name).css('color', color).css('font-weight', 'bold')).append($('<span>').text(': ')).append($('<span>').text(msg)));
         });
         
         socket.on('update users', function(msg) {
