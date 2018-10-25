@@ -63,13 +63,7 @@
             var msg = $('#msg').val();
             var msgArr = msg.split(' ');
             var cmd = msgArr[0];
-            if (cmd == '/tell') {
-              if (msgArr.length >= 3) {
-                var to = msgArr[1];
-                var msg = msgArr.slice(2).join(' ');
-                socket.emit('direct message', to, msg);
-              }
-            } else if (msg.length > 0) {
+            if (msg.length > 0) {
               socket.emit('chat message', msg);
             }
             $('#msg').val('');
