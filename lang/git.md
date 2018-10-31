@@ -5,6 +5,15 @@
 * 여기서 커밋은 아래(앞)에서 위(뒤, top)로 쌓이는 방식으로 묘사한다.
 * `C1`, `C2` 등은 커밋의 해시값으로 한다.
 
+## 팁
+
+* `.git/config`의 원격 저장소 주소 앞에 ID를 달아두면 푸시할 때 비밀번호만 입력하면 된다.
+  ```
+  [remote "origin"]
+    url = https://reverince@github.com/reverince/TIL.git
+  ```
+  * `reverince:PASSWORD@...`와 같이 비밀번호도 입력할 수 있지만 파일 관리에 주의.
+
 ## 명령어
 
 * `git add` 옵션
@@ -14,6 +23,9 @@
 
 * `git commit` 옵션
   * `--amend` : 마지막 커밋 (메시지) 수정 (이후 `git push --force` 필요)
+
+* `git push` 옵션
+  * `--set-upstream` : (여러 원격 저장소가 있을 때) 기본값으로 push할 저장소 지정
 
 * `git rm` : 삭제된(`deleted:`) 파일 스테이징 가능
 
@@ -26,9 +38,14 @@
 * `git diff` 옵션
   * `--cached` / `--staged` : 스테이지된 파일만 비교
 
+* `git checkout` 옵션
+  * `-b` : 브랜치가 없으면 만들고 체크아웃
+
 * `git config --global push.default` 옵션
   * `matching` : 모든 브랜치 푸시
   * `simple` : 현재 브랜치만 푸시
+
+* `git log --oneline --decorate -5` : 최근 커밋 로그 5개
 
 ## 기본
 
@@ -85,6 +102,19 @@
 * `git remote -v` : 원격 저장소 목록
 
 * `git remote rm heroku` : 원격 저장소 목록에서 제거
+
+## 설정 (`~/.gitconfig`)
+
+```
+[user]
+        name = NAME
+        email = EMAIL
+[core]
+        autocrlf = input
+        whitespace = trailing-space,space-before-tab
+[push]
+        default = simple
+```
 
 ## 커밋 옮기기
 
