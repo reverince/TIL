@@ -108,6 +108,14 @@ end
 * `.equal?` : 객체 ID가 같은지 확인한다.
 * `defined?` : 변수나 메소드 등이 정의되었는지 확인한다.
 
+
+## 입출력
+
+```bash
+ruby main.rb < data.txt
+```
+
+
 ## 블록 / `Proc` / `lambda`
 
 ### [블록](https://www.tutorialspoint.com/ruby/ruby_blocks.htm)
@@ -394,4 +402,58 @@ threads.each { |t| t.join }
 스레드 1 : cv 신호를 발신합니다
 스레드 1 : 마저 끝냅니다
 스레드 0 : cv 신호를 받고 나왔어요
+```
+
+
+## 테스트
+
+### 단위 테스트
+
+TODO
+
+### 벤치마크 (`benchmark`)
+
+```ruby
+require 'benchmark'
+
+Benchmark.bmbm do |x|
+  n = 100000000
+  x.report("for:")   { for i in 1..n; a = "1"; end }
+  x.report("times:") { n.times do   ; a = "1"; end }
+  x.report("upto:")  { 1.upto(n) do ; a = "1"; end }
+end
+```
+
+```
+Rehearsal ------------------------------------------
+for:    15.752115   0.116360  15.868475 ( 33.711067)
+times:  15.085311   0.076333  15.161644 ( 31.015700)
+upto:   14.712383   0.067234  14.779617 ( 33.220445)
+-------------------------------- total: 45.809736sec
+
+             user     system      total        real
+for:    16.166236   0.120984  16.287220 ( 33.755206)
+times:  15.728698   0.106537  15.835235 ( 33.688026)
+upto:   16.366527   0.147400  16.513927 ( 37.966620)
+```
+
+### 프로파일링 (`profile`)
+
+```
+ruby -r profile sleep_sort.rb
+```
+
+```
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+218.18     0.10      0.10      216     0.44     0.44  Kernel#sleep
+ 36.36     0.11      0.02      672     0.02     0.27  Object#sleep_sort
+ 36.36     0.13      0.02      216     0.07     0.07  Thread#join
+ 18.18     0.14      0.01      216     0.04     0.04  Thread#initialize
+  9.09     0.14      0.00      216     0.02     0.06  Thread.new
+  9.09     0.14      0.00      432     0.01     0.01  Array#<<
+  0.00     0.14      0.00        1     0.00     0.00  TracePoint#enable
+  0.00     0.14      0.00        2     0.00     0.00  IO#set_encoding
+  ...
+  0.00     0.04      0.00        1     0.00    44.00  #toplevel
 ```
