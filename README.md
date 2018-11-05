@@ -10,7 +10,7 @@ Today I Learned,
 * 안드로이드 ([android/](/android))
   * 기초 ([basics.md](/android/basics.md))
 * 알고리즘 ([algorithm/](/algorithm))
-  * 미로 생성 ([maze_generation.md](/algorithm/maze_generation.md))
+  * 미로 생성 ([maze_generation/](/algorithm/maze_generation))
   * 정렬([sort/](/algorithm/sort))
 * 언어 ([lang/](/lang))
   * C# ([csharp.md](/lang/csharp.md))

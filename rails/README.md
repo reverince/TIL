@@ -184,7 +184,8 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 end
 ```
 
-* `rails test`
+* `rails test` 혹은 `rails t`
+  * `rails test:models`처럼 부분 테스트 가능
 * `def setup` : 테스트 시작 전 자동으로 실행되는 메소드
 
 ### 픽스처 (`test/fixtures`)
