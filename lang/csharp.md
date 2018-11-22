@@ -45,6 +45,16 @@ m(1.0f)  // Jump(1.0f); Walk(1.0f);
   * 반환이 있는 경우 : `Func<T, TResult>`
 
 
+## `enum` : [열거형 형식](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/enumeration-types)
+
+```cs
+enum Direction : short { North, East, South, West };
+
+Direction myDirection = Direction.North;
+int directionNumber = (int)myDirection;  // 0
+```
+
+
 ## `foreach`
 
 * `foreach`는 실행 중 요소가 추가 혹은 삭제되면 예측하지 못한 결과를 불러일으킬 수 있으므로 읽기 전용 `IEnumerable<T>`와 사용하는 것이 좋다.

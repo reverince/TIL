@@ -30,6 +30,38 @@
   * `Snap` : `Positive` 버튼과 `Negative` 버튼이 동시에 눌린 경우 0 반환
   * `Dead` : 미세한 조이스틱 입력 무시
 
+### Invoke
+
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class InvokeScript : MonoBehaviour 
+{
+  public GameObject target;
+
+  void Start()
+  {
+    // Start 2초 후 1회 실행
+    Invoke("SpawnObject", 2);
+    // Start 4초 후 2초 간격으로 반복 실행
+    InvokeRepeating("SpawnObject", 4, 2);
+
+    // 모든 Invoke 중지
+    CancelInvoke();
+    // 특정 Invoke 중지
+    CancelInvoke("SpawnObject");
+  }
+
+  void SpawnObject()
+  {
+    float x = Random.Range(-2.0f, 2.0f);
+    float z = Random.Range(-2.0f, 2.0f);
+    Instantiate(target, new Vector3(x, 2, z), Quaternion.identity);
+  }
+}
+```
+
 ### Transform
 
 * `LookAt(target)` : `target`을 향해 `transform`을 회전한다.
@@ -67,7 +99,7 @@ public class LevelScriptEditor : Editor
   public override void OnInspectorGUI()
   {
     LevelScript levelScript = (LevelScript)target;
-    
+
     levelScript.experience = EditorGUILayout.IntField("Experience", levelScript.experience);
     EditorGUILayout.LabelField("Level", levelScript.Level.ToString());
   }

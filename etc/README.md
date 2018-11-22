@@ -7,9 +7,11 @@
 
 * 부모(Parent) 클래스 : 자식(Child) 클래스 = 기본(Base) 클래스 : 파생(Derived) 클래스
 
-* [온라인 알고리즘](https://ko.wikipedia.org/wiki/%EC%98%A8%EB%9D%BC%EC%9D%B8_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) : 시작할 때 모든 입력 정보를 가지고 있지 않고, 입력을 차례로 받아들이면서 처리하는 알고리즘 (↔오프라인 알고리즘)
+* Boiler plate code([상용구 코드](https://ko.wikipedia.org/wiki/%EC%83%81%EC%9A%A9%EA%B5%AC_%EC%BD%94%EB%93%9C)) : 수정하지 않거나 최소한의 수정만을 거쳐 여러 곳에 필수적으로 사용되는 코드
 
-* [Garbage Collection](https://ko.wikipedia.org/wiki/가비지 컬렉션)(가비지 컬렉션; 쓰레기 수집) : 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기능
+* Garbage Collection(가비지 컬렉션; [쓰레기 수집](https://ko.wikipedia.org/wiki/가비지 컬렉션)) : 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기능
+
+* Online Algorithm([온라인 알고리즘](https://ko.wikipedia.org/wiki/%EC%98%A8%EB%9D%BC%EC%9D%B8_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)) : 시작할 때 모든 입력 정보를 가지고 있지 않고, 입력을 차례로 받아들이면서 처리하는 알고리즘 (↔오프라인 알고리즘)
 
 * Seamless(심리스) : 틈 없이 이어지는 것
   * 심리스 업데이트라면 업데이트할 때 기존 실행 중인 프로세스를 종료하지 않아도 된다.
@@ -27,7 +29,7 @@
 
 * [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)(Read-Eval-Print Loop)
 
-* [REST](https://ko.wikipedia.org/wiki/REST)(Representational State Transfer)
+* [REST](https://ko.wikipedia.org/wiki/REST)(Representational State Transfer) : CRUD(Create, Read, Update, Delete), ACID(Add, Change, Inquire, Delete)와 유사
 
 * [TDD](https://ko.wikipedia.org/wiki/%ED%85%8C%EC%8A%A4%ED%8A%B8_%EC%A3%BC%EB%8F%84_%EA%B0%9C%EB%B0%9C)(Test-driven Development; 테스트 주도  개발)
 
