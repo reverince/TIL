@@ -6,22 +6,46 @@
 * [Tutorialspoint Ruby Tutorial](https://www.tutorialspoint.com/ruby/index.htm)
 
 
-## 트릭
+## 팁 & 트릭
 
-[21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
+* [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
+* [11 Ruby tricks You Haven't Seen Befroe](https://www.rubyguides.com/2016/01/ruby-tricks/)
 
-#### DRY by Enumerator
+##### DRY by Enumerator
 
 ```ruby
 %w(player room item).each { |x| require_relative x }
 ```
 
-#### Exploding Enumerables
+##### Deep Copy (깊은 복사)
+
+```ruby
+arr = ["Red", "Green", "Blue"]
+
+p arr.map(&:object_id)
+p arr.clone.map(&:object_id)
+# => [47267505873520, 47267505873440, 47267505873420]
+
+def deep_copy(obj)
+  Marshal.load(Marshal.dump(obj))
+end
+
+p deep_copy(arr).map(&:object_id)
+# => [47267507427700, 47267507427660, 47267507427640]
+```
+
+##### Exploding Enumerables
 
 ```ruby
 a = %w(a b c d e f g)
 b = [2, 3, 5]
 a.values_at(*b)  # => ["c", "d", "f"]
+```
+
+##### Run Ruby w/o irb
+
+```bash
+ruby -e ''' puts "Hello, Ruby!" '''
 ```
 
 
@@ -51,7 +75,7 @@ end
 
 # 별명 (alias)
 def a_very_long_method_name
-  return true
+  true
 end
 alias a_ a_very_long_method_name
 a_()
@@ -72,6 +96,7 @@ poipois = pois.collect {|i| i * 2}
 
 multi_dims = Array.new(h) { Array.new(w) }
 
+lotto_numbers = Array.new(7) { rand 1..45 }
 ```
 
 
@@ -116,9 +141,20 @@ ruby main.rb < data.txt
 ```
 
 
-## 블록 / `Proc` / `lambda`
+## 메소드
 
-### [블록](https://www.tutorialspoint.com/ruby/ruby_blocks.htm)
+##### Integer
+
+```ruby
+8[3]  # = 0b1000[3]
+# => 1
+
+314.digits
+# => [4, 1, 3]
+```
+
+
+## [블록](https://www.tutorialspoint.com/ruby/ruby_blocks.htm)
 
 ```ruby
 def blk
@@ -139,7 +175,7 @@ blk { |loc| puts "여긴 #{loc}이에요." }
 ~블록의 끝~
 ```
 
-#### `BEGIN` / `END`
+##### `BEGIN` / `END`
 
 ```ruby
 BEGIN {
@@ -152,7 +188,10 @@ END {
 ...
 ```
 
-### `Proc`
+
+## `Proc` & `lambda`
+
+##### `Proc`
 
 ```ruby
 new_prc = Proc.new { puts "Hello, new Proc!" }
@@ -163,17 +202,31 @@ new_prc[]
 prc = proc {puts "Hello, Kernel#proc!" }
 ```
 
-### `lambda`
+##### `lambda`
 
 ```ruby
 lmd = lambda { puts "Hello, lambda!" }
 lmd.call()
+lmd.===
 lmd.()
 lmd[]
 
 sweet_lmd = ->{ puts "Hello, ->!" }
 ```
 
+##### `Proc` vs `lambda`
+
+* `Proc`은 인자가 부족하면 `nil`로 채워지지만 `lambda`는 `ArgumentError`가 발생한다.
+
+```rb
+prc = Proc.new { |a, b| a + b }
+lmd = ->(a, b) { a + b }
+
+prc.call(1)
+# TypeError: nil can't be coerced into Integer
+lmd.call(1)
+# ArgumentError: wrong number of arguments (given 1, expected 2)
+```
 
 ## 객체
 
