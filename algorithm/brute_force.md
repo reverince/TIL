@@ -110,3 +110,69 @@ int main() {
 
 * 기저 조건에서 유효성을 검사하기 때문에 for문에서 별도로 확인할 필요가 없다.
 * 시간복잡도 O(8^n). 문제를 풀 수는 있지만 속도가 느려서 개선이 필요하다.
+
+## [PICNIC](https://algospot.com/judge/problem/read/PICNIC)
+
+* `(0, 1)`과 `(1, 0)`은 같은 쌍이므로 중복해서 세지 않아야 한다.
+* `[(0, 1), (2, 3)]`과 `[(2, 3), (0, 1)]`은 같은 경우이므로 중복해서 세지 않아야 한다.
+* 가장 번호가 빠른 학생부터 검사하는 것으로 해결할 수 있다.
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int MAX_STUDENTS = 10;
+int n;
+bool areFriends[MAX_STUDENTS][MAX_STUDENTS];
+
+// 모든 학생을 친구끼리 짝짓는 방법의 수를 구하는 함수
+int countPair(bool taken[MAX_STUDENTS]) {
+  // 짝을 찾지 못한 첫 번째 학생 탐색
+  int free = -1;
+  for(int i = 0; i < n; ++i) {
+    if(!taken[i]) {
+      free = i;
+      break;
+    }
+  }
+  // 기저: 모두 짝을 찾은 경우
+  if(free == -1) return 1;
+  // 이하 재귀
+  int ret = 0;
+  for(int with = free + 1; with < n; ++with) {
+    // 아직 짝이 없으며 친구인 상대 탐색
+    if(!taken[with] && areFriends[free][with]) {
+      // 짝을 짓는 경우 조합의 수
+      taken[free] = taken[with] = true;
+      ret += countPair(taken);
+      // 짝을 취소하고 다음 상대로 진행
+      taken[free] = taken[with] = false;
+    }
+  }
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    int m;
+    bool taken[MAX_STUDENTS] = { false, };
+    // 배열 초기화
+    memset(areFriends, false, sizeof(areFriends));
+
+    cin >> n >> m;
+    for(int i = 0; i < m; ++i) {
+      int s1, s2;
+      cin >> s1 >> s2;
+      areFriends[s1][s2] = areFriends[s2][s1] = true;
+    }
+
+    cout << countPair(taken) << '\n';
+  }
+
+  return 0;
+}
+```
