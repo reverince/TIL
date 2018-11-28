@@ -176,3 +176,92 @@ int main() {
   return 0;
 }
 ```
+
+## [BOARDCOVER](https://algospot.com/judge/problem/read/BOARDCOVER)
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+const int TYPE_CNT = 4;
+const int BLOCK_SIZE = 3;
+const int COVER_TYPE[TYPE_CNT][BLOCK_SIZE][2] = {
+  { {0, 0}, {0, 1}, {1, 0} },  // ┏
+  { {0, 0}, {0, 1}, {1, 1} },  // ┓
+  { {0, 0}, {1, 0}, {1, 1} },  // ┗
+  { {0, 0}, {1, 0}, {1, -1} }  // ┛
+};
+int h, w;
+
+bool inRange(int y, int x) {
+  if(y >= 0 && y < h && x >= 0 && x < w) return true;
+  else return false;
+}
+
+// 게임판에 블록을 덮거나(delta=1) 치우는(delta=-1) 함수
+// 성공하면 true, 실패하면 false 반환
+bool set(vector<vector<int> >& board, int y, int x, int type, int delta) {
+  bool ret = true;
+  for(int i = 0; i < BLOCK_SIZE; ++i) {
+    const int ny = y + COVER_TYPE[type][i][0];
+    const int nx = x + COVER_TYPE[type][i][1];
+    if(!inRange(ny, nx)) ret = false;
+    else {
+      board[ny][nx] += delta;
+      if(board[ny][nx] > 1) ret = false;
+    }
+  }
+  return ret;
+}
+
+// 게임판의 모든 흰 칸을 덮는 방법의 수를 구하는 함수
+int cover(vector<vector<int> >& board) {
+  // 아직 덮지 않은 가장 왼쪽 위 흰 칸 탐색
+  int y = -1, x = -1;
+  for(int j = 0; j < board.size(); ++j) {
+    for(int i = 0; i < board[j].size(); ++i) {
+      if(board[j][i] == 0) {
+        y = j;
+        x = i;
+        break;
+      }
+    }
+    if(y != -1) break;
+  }
+  // 기저: 게임판을 다 덮은 경우 1 반환
+  if(y == -1) return 1;
+  // 이하 재귀
+  int ret = 0;
+  for(int type = 0; type < TYPE_CNT; ++type) {
+    // 해당 블록 타입으로 덮는 경우 방법의 수 계산
+    if(set(board, y, x, type, 1)) ret += cover(board);
+    // 덮은 블록을 제거하고 다음 타입으로 진행
+    set(board, y, x, type, -1);
+  }
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    cin >> h >> w;
+    // 입력 받은 크기의 게임판 생성
+    vector<vector<int> > board(h, vector<int>(w));
+    // 게임판 초기화
+    for(int j = 0; j < h; ++j) {
+      for(int i = 0; i < w; ++i) {
+        char ch;
+        cin >> ch;
+        board[j][i] = (ch == '.') ? 0 : 1;
+      }
+    }
+
+    cout << cover(board) << '\n';
+  }
+
+  return 0;
+}
+```
