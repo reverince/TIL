@@ -265,3 +265,80 @@ int main() {
   return 0;
 }
 ```
+
+## [CLOCKSYNC](https://algospot.com/judge/problem/read/CLOCKSYNC)
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+const int PUSH_LIMIT = 31;  // SWITCH_CNT * 3 + 1
+const int SWITCH_CNT = 10, CLOCK_CNT = 16;
+const bool LINKED[SWITCH_CNT][CLOCK_CNT] = {
+  {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0},
+  {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
+  {1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0},
+  {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+  {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+  {0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1},
+  {0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0}
+};
+
+// 모든 시계가 12시를 가리키는지 확인하는 함수
+bool areAligned(vector<int> clocks) {
+  vector<int>::iterator it;
+  for(it = clocks.begin(); it != clocks.end(); ++it) {
+    if(*it != 12) return false;
+  }
+  return true;
+}
+
+// 스위치를 누르는 함수
+void push(vector<int>& clocks, int swtch) {
+  for(int clock = 0; clock < CLOCK_CNT; ++clock) {
+    if(LINKED[swtch][clock]) {
+      clocks[clock] += 3;
+      if(clocks[clock] == 15) clocks[clock] = 3;
+    }
+  }
+}
+
+// 모든 시계를 12시로 돌려놓기 위해 눌러야 할 스위치의 최소 수를 구하는 함수
+int fewestPush(vector<int>& clocks, int swtch) {
+  // 모든 스위치를 누른 후 정렬 여부 검사
+  if(swtch == SWITCH_CNT) return areAligned(clocks) ? 0 : PUSH_LIMIT;
+  int ret = PUSH_LIMIT;
+  // 스위치를 0~3번 누르는 경우 각각 시도
+  for(int cnt = 0; cnt < 4; ++cnt) {
+    ret = min(ret, cnt + fewestPush(clocks, swtch + 1));
+    push(clocks, swtch);
+    // 스위치를 4번 눌렀으므로 연결된 시계는 원래 상태
+  }
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    vector<int> clocks;
+    int res;
+
+    for(int i = 0; i < CLOCK_CNT; ++i) {
+      int time;
+      cin >> time;
+      clocks.push_back(time);
+    }
+
+    res = fewestPush(clocks, 0);
+    cout << ((res < PUSH_LIMIT) ? res : -1) << '\n';
+  }
+
+  return 0;
+}
+```
