@@ -33,3 +33,50 @@ int main() {
   return 0;
 }
 ```
+
+## [JUMPGAME](https://algospot.com/judge/problem/read/JUMPGAME)
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int N_MAX = 100;
+int n, board[N_MAX][N_MAX];
+// 메모이제이션을 위한 배열, -1로 초기화
+int cache[N_MAX][N_MAX];
+
+int jump(int y, int x) {
+  // 기저 1: 범위를 벗어난 경우 0
+  if(y >= n || x >= n) return 0;
+  // 기저 2: 도착한 경우 1
+  if(y == n - 1 && x == n - 1) return 1;
+  // 메모이제이션 확인
+  int& ret = cache[y][x];
+  if(ret != -1) return ret;
+  // 재귀: 오른쪽과 아래로 각각 점프
+  int jumpSize = board[y][x];
+  return ret = ( jump(y + jumpSize, x) || jump(y, x + jumpSize) );
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    // cache 초기화
+    memset(cache, -1, sizeof(cache));
+
+    cin >> n;
+    for(int j = 0; j < n; ++j) {
+      for(int i = 0; i < n; ++i) {
+        cin >> board[j][i];
+      }
+    }
+
+    cout << ( jump(0, 0) ? "YES" : "NO" ) << '\n';
+  }
+
+  return 0;
+}
+```
