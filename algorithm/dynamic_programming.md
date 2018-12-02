@@ -80,3 +80,69 @@ int main() {
   return 0;
 }
 ```
+
+## [WILDCARD](https://algospot.com/judge/problem/read/WILDCARD)
+
+* 고려해야 하는 경우
+  * 패턴(`w`) 또는 문자열(`s`)의 끝에 도달한 경우
+  * 같은 위치에 글자가 다른 경우 : `w[pos] != s[pos]`
+  * `*`를 만난 경우
+* 모든 문자열의 길이가 100 이하이므로 최대 가짓수는 `101 * 101 = 10201`이다. 비둘기집의 원리에 따라 `101 * 101` 배열에 모든 경우를 저장할 수 있다.
+
+```cpp
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+const int STR_MAX = 101;
+int cache[STR_MAX][STR_MAX];  // 초기값 -1
+string W, S;
+
+bool match(int w, int s) {
+  int& ret = cache[w][s];
+  // 메모이제이션
+  if(ret != -1) return ret;
+  // 재귀
+  if(w < W.size() && s < S.size() && (W[w] == '?' || W[w] == S[s])) {
+    return ret = match(w + 1, s + 1);
+  }
+  // w의 끝에 도달한 경우: s 끝이면 true
+  if(w == W.size()) return ret = (s == S.size());
+  // *를 만난 경우
+  if(W[w] == '*') {
+    if(match(w + 1, s) || (s < S.size() && match(w, s + 1))) {
+      return ret = true;
+    }
+  }
+  // 그 외 모두 false
+  return ret = false;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    int s_cnt;
+    vector<string> answers;
+    vector<string>::iterator it;
+
+    cin >> W;
+    cin >> s_cnt;
+    for(int s = 0; s < s_cnt; ++s) {
+      memset(cache, -1, sizeof(cache));
+      cin >> S;
+      if(match(0, 0)) answers.push_back(S);
+    }
+
+    sort(answers.begin(), answers.end());
+    for(it = answers.begin(); it != answers.end(); ++it) {
+      cout << *it << '\n';
+    }
+  }
+
+  return 0;
+}
+```
