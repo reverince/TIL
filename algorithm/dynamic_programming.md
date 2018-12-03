@@ -146,3 +146,46 @@ int main() {
   return 0;
 }
 ```
+
+## [TRIANGLEPATH](https://algospot.com/judge/problem/read/TRIANGLEPATH)
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int N_MAX = 100;
+int n, triangle[N_MAX][N_MAX];
+int cache[N_MAX][N_MAX];  // 초기값 -1
+
+// (x, y)부터 맨 아래 줄까지 내려가는 최대 경로의 합
+int path(int y, int x) {
+  // 기저: 맨 아래 줄
+  if(y == n - 1) return triangle[y][x];
+  // 메모이제이션
+  int& ret = cache[y][x];
+  if(ret != -1) return ret;
+  // 재귀
+  return ret = triangle[y][x] + max( path(y+1, x), path(y+1, x+1) );
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase; testCase < c; ++testCase) {
+    // cache 초기화
+    memset(cache, -1, sizeof(cache));
+
+    cin >> n;
+    for(int j = 0; j < n; ++j) {
+      for(int i = 0; i <= j; ++i) {
+        cin >> triangle[j][i];
+      }
+    }
+    cout << path(0, 0) << '\n';
+  }
+
+  return 0;
+}
+```
