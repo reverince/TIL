@@ -22,6 +22,8 @@ Today I Learned,
   * 마크다운 ([markdown.md](/lang/markdown.md))
   * 정규 표현식 ([regex.md](/lang/regex.md))
 * 유니티 ([unity/](/unity))
+* 자료구조 ([data_structure/](/data_structure))
+  * 연결 리스트 ([linked_list.md](/data_structure/linked_list.md))
 * 기타 ([etc/](/etc))
 
 ### 진행 중인 프로젝트
