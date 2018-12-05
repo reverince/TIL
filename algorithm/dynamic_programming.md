@@ -64,7 +64,6 @@ int main() {
 
   cin >> c;
   for(int testCase = 0; testCase < c; ++testCase) {
-    // cache 초기화
     memset(cache, -1, sizeof(cache));
 
     cin >> n;
@@ -174,7 +173,6 @@ int main() {
 
   cin >> c;
   for(int testCase; testCase < c; ++testCase) {
-    // cache 초기화
     memset(cache, -1, sizeof(cache));
 
     cin >> n;
@@ -184,6 +182,57 @@ int main() {
       }
     }
     cout << path(0, 0) << '\n';
+  }
+
+  return 0;
+}
+```
+
+## [LIS](https://algospot.com/judge/problem/read/LIS) (최대 증가 부분 수열)
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int N_MAX = 500;
+int n, seq[N_MAX];
+int cache[N_MAX];  // 초기값 -1
+
+// 주어진 인덱스에서 시작하는 수열의
+// 최대 증가 부분 수열의 길이를 구하는 함수
+int lis(int start) {
+  // 메모이제이션
+  int& ret = cache[start];
+  if(ret != -1) return ret;
+  // 무조건 부분 수열 존재
+  ret = 1;
+  // 재귀
+  for(int next = start + 1; next < n; ++next) {
+    if(seq[start] < seq[next]) {
+      ret = max(ret, lis(next) + 1);
+    }
+  }
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    memset(cache, -1, sizeof(cache));
+
+    cin >> n;
+    for(int i = 0; i < n; ++i) {
+      cin >> seq[i];
+    }
+
+    int res = lis(0);
+    for(int i = 1; i < n; ++i) {
+      res = max(res, lis(i));
+    }
+    cout << res << '\n';
   }
 
   return 0;
