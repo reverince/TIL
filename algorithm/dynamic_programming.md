@@ -90,9 +90,9 @@ int main() {
 
 ```cpp
 #include <iostream>
-#include <cstring>
-#include <vector>
 #include <algorithm>
+#include <vector>
+#include <cstring>
 using namespace std;
 
 const int STR_MAX = 101;
@@ -233,6 +233,79 @@ int main() {
       res = max(res, lis(i));
     }
     cout << res << '\n';
+  }
+
+  return 0;
+}
+```
+
+## [PI](https://algospot.com/judge/problem/read/PI)
+
+```cpp
+#include <iostream>
+#include <cstdlib>  // abs
+#include <cstring>  // memset
+using namespace std;
+
+const int INF = 2100000000;
+string nums;
+int cache[10002];
+
+// numStr[a..b] 구간의 난이도를 계산하는 함수
+int classify(int a, int b) {
+  string subNums = nums.substr(a, b-a+1);
+  // 첫 숫자와 나머지 숫자가 같으면 난이도 1
+  // 새 string 객체를 생성해 비교
+  if(subNums == string(subNums.size(), subNums[0])) return 1;
+  // 등차 수열 여부 검사
+  bool progressive = true;
+  int diff = subNums[1] - subNums[0];  // 공차
+  for(int i = 0; i < subNums.size() - 1; ++i) {
+    if(subNums[i+1] - subNums[i] != diff) progressive = false;
+  }
+  // 등차수열이고 공차가 1 또는 -1이면 난이도 2
+  if(progressive && abs(diff) == 1) return 2;
+  // 번갈아 나오는 수열 여부 검사
+  bool alternating = true;
+  for(int i = 0; i < subNums.size(); ++i) {
+    if(subNums[i] != subNums[i%2]) alternating = false;
+  }
+  // 번갈아 나오는 수열이면 난이도 4
+  if(alternating) return 4;
+  // 등차수열이고 공차가 1 또는 -1이 아니면 난이도 5
+  if(progressive) return 5;
+  // 그 외의 경우 난이도 10
+  return 10;
+}
+
+// 수열을 외우는 최소의 난이도를 계산하는 함수
+int memorize(int begin) {
+  // 기저: 수열의 끝
+  if(begin == nums.size()) return 0;
+  // 메모이제이션
+  int& ret = cache[begin];
+  if(ret != -1) return ret;
+  // 재귀
+  ret = INF;
+  for(int len = 3; len <= 5; ++len) {
+    int end = begin + len;
+    if(end <= nums.size()) {
+      ret = min(ret,
+                classify(begin, end-1) + memorize(end));
+    }
+  }
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    memset(cache, -1, sizeof(cache));
+
+    cin >> nums;
+    cout << memorize(0) << '\n';
   }
 
   return 0;
