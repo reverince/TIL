@@ -311,3 +311,45 @@ int main() {
   return 0;
 }
 ```
+
+## [TILING2](https://algospot.com/judge/problem/read/TILING2)
+
+* 채우는 방법은 2가지
+  * 세로 타일 1개로 1칸 너비를 채우는 방법
+  * 가로 타일 2개로 2칸 너비를 채우는 방법
+* 따라서 tiling(n) = tiling(n-1) + tiling(n-2) (n은 채워야 하는 너비)
+
+```cpp
+#include <iostream>
+#include <cstring>  // memset
+using namespace std;
+
+const int MOD = 1000000007;
+const int N_MAX = 100;
+int cache[N_MAX + 1];
+
+// 2 * width 크기의 사각형을 채우는 경우의 수를 구하는 함수
+int tiling(int width) {
+  // 기저
+  if(width <= 1) return 1;
+  // 메모이제이션
+  int& ret = cache[width];
+  if(ret != -1) return ret;
+  return ret = ( tiling(width-2) + tiling(width-1) ) % MOD;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    int n;
+    memset(cache, -1, sizeof(cache));
+
+    cin >> n;
+    cout << tiling(n) << '\n';
+  }
+
+  return 0;
+}
+```
