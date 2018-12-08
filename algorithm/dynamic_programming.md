@@ -353,3 +353,61 @@ int main() {
   return 0;
 }
 ```
+
+### [ASYMTILING](https://algospot.com/judge/problem/read/ASYMTILING)
+
+* 비대칭 타일링 방법의 수를 세는 대신 대칭 방법의 수를 세서 뺀다.
+* 대칭으로 채우는 방법은 3가지
+  * 반으로 나눠서 양쪽이 대칭인 경우
+  * 반으로 나누고 가운데 세로 타일 1개가 놓인 경우
+  * 반으로 나누고 가운데 가로 타일 2개가 놓인 경우
+* 한쪽 반을 채우면 반대쪽 반은 대칭으로 정해지므로 한쪽을 채우는 경우만 세면 된다.
+
+```cpp
+#include <iostream>
+#include <cstring>  // memset
+using namespace std;
+
+const int MOD = 1000000007;
+const int N_MAX = 100;
+int cache[N_MAX + 1];
+
+// 2 * width 크기의 사각형을 채우는 경우의 수를 구하는 함수
+int tiling(int width) {
+  // 기저
+  if(width <= 1) return 1;
+  // 메모이제이션
+  int& ret = cache[width];
+  if(ret != -1) return ret;
+  return ret = ( tiling(width-2) + tiling(width-1) ) % MOD;
+}
+
+// 2 * width 크기의 사각형을 비대칭으로 채우는 경우의 수를 구하는 함수
+int asym(int width) {
+  // 너비가 홀수인 경우 (중앙 세로 타일 1개)
+  if(width % 2 == 1) {
+    // 메모이제이션이 적용되므로 함수 반환값 저장 불필요
+    return (tiling(width) - tiling(width/2) + MOD) % MOD;
+  }
+  // 너비가 짝수인 경우 (중앙 타일 0개 또는 중앙 가로 타일 2개)
+  int ret = tiling(width);
+  ret = (ret - tiling(width/2) + MOD) % MOD;
+  ret = (ret - tiling(width/2-1) + MOD) % MOD;
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    int n;
+    memset(cache, -1, sizeof(cache));
+
+    cin >> n;
+    cout << asym(n) << '\n';
+  }
+
+  return 0;
+}
+```
