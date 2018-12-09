@@ -8,7 +8,7 @@
 
 ```cpp
 #include <iostream>
-#include <cstring>
+#include <cstring>  // memset
 using namespace std;
 
 const int LIMIT = 100;
@@ -38,7 +38,7 @@ int main() {
 
 ```cpp
 #include <iostream>
-#include <cstring>
+#include <cstring>  // memset
 using namespace std;
 
 const int N_MAX = 100;
@@ -92,7 +92,7 @@ int main() {
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <cstring>
+#include <cstring>  // memset
 using namespace std;
 
 const int STR_MAX = 101;
@@ -150,14 +150,14 @@ int main() {
 
 ```cpp
 #include <iostream>
-#include <cstring>
+#include <cstring>  // memset
 using namespace std;
 
 const int N_MAX = 100;
 int n, triangle[N_MAX][N_MAX];
 int cache[N_MAX][N_MAX];  // 초기값 -1
 
-// (x, y)부터 맨 아래 줄까지 내려가는 최대 경로의 합
+// (y, x)부터 맨 아래 줄까지 내려가는 최대 경로의 합
 int path(int y, int x) {
   // 기저: 맨 아래 줄
   if(y == n - 1) return triangle[y][x];
@@ -182,6 +182,69 @@ int main() {
       }
     }
     cout << path(0, 0) << '\n';
+  }
+
+  return 0;
+}
+```
+
+### [TRIPATHCNT](https://algospot.com/judge/problem/read/TRIPATHCNT)
+
+* count(y, x)는 아래 세 값 중 최댓값
+  * count(y+1, x) ( if path(y+1, x) > path(y+1, x+1) )
+  * count(y+1, x+1) ( if path(y+1, x) < path(y+1, x+1) )
+  * count(y+1, x) + count(y+1, x+1) ( if path(y+1, x) = path(y+1, x+1) )
+
+```cpp
+#include <iostream>
+#include <cstring>  // memset
+using namespace std;
+
+const int N_MAX = 100;
+int n, triangle[N_MAX][N_MAX];
+int cache[N_MAX][N_MAX];  // 초기값 -1
+int countCache[N_MAX][N_MAX];  // 초기값 -1
+
+// (y, x)부터 맨 아래 줄까지 내려가는 최대 경로의 합
+int path(int y, int x) {
+  // 기저: 맨 아래 줄
+  if(y == n - 1) return triangle[y][x];
+  // 메모이제이션
+  int& ret = cache[y][x];
+  if(ret != -1) return ret;
+  // 재귀
+  return ret = triangle[y][x] + max( path(y+1, x), path(y+1, x+1) );
+}
+
+// (y,x)부터 맨 아래 줄까지 내려가는 최대 경로의 수
+int count(int y, int x) {
+  // 기저
+  if(y == n - 1) return 1;
+  // 메모이제이션
+  int& ret = countCache[y][x];
+  if(ret != -1) return ret;
+  // 재귀
+  ret = 0;
+  if(path(y+1, x) <= path(y+1, x+1)) ret += count(y+1, x+1);
+  if(path(y+1, x+1) <= path(y+1, x)) ret += count(y+1, x);
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase; testCase < c; ++testCase) {
+    memset(cache, -1, sizeof(cache));
+    memset(countCache, -1, sizeof(countCache));
+
+    cin >> n;
+    for(int j = 0; j < n; ++j) {
+      for(int i = 0; i <= j; ++i) {
+        cin >> triangle[j][i];
+      }
+    }
+    cout << count(0, 0) << '\n';
   }
 
   return 0;
