@@ -14,6 +14,7 @@ Today I Learned,
   * 완전 탐색([brute_force.md](/algorithm/brute_force.md))
   * 재귀([recursion.md](/algorithm/recursion.md))
   * 정렬([sort/](/algorithm/sort))
+  * 탐욕법([greedy_algorithm.md](/algorithm/greedy_algorithm.md))
 * 언어 ([lang/](/lang))
   * C# ([csharp.md](/lang/csharp.md))
   * C++ ([cpp.md](/lang/cpp.md))
