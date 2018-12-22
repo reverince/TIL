@@ -342,3 +342,39 @@ int main() {
   return 0;
 }
 ```
+
+## 순회 외판원 문제 (TSP; Travelling Salesman Problem)
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+const int LENGTH_LIMIT = 999999;
+const int CITY_MAX = 10;
+int city_cnt;
+double dist[CITY_MAX][CITY_MAX];
+
+// 순회 외판원 문제를 해결하는 완전 탐색 함수
+double shortestPath(vector<int>& path, vector<bool>& visited, double currentLength) {
+  // 기저: 모든 도시를 방문한 경우 시작 도시로 돌아가 종료
+  if(path.size() == city_cnt) return currentLength + dist[path[0]][path.back()];
+  // 이하 재귀
+  double ret = LENGTH_LIMIT;
+  for(int next = 0; next < city_cnt; ++next) {
+    if(visited[next]) continue;
+    int here = path.back();
+    path.push_back(next);
+    visited[next] = true;
+    // 나머지 경로를 재귀 호출
+    double newLength = currentLength + dist[here][next];
+    double cand = shortestPath(path, visited, newLength);
+    ret = min(ret, cand);
+    visited[next] = false;
+    path.pop_back();
+  }
+  return ret;
+}
+
+// TODO
+```
