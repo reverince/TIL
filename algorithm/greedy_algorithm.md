@@ -55,3 +55,58 @@ int main() {
   return 0;
 }
 ```
+
+## [MATCHORDER](https://algospot.com/judge/problem/read/MATCHORDER)
+
+* 이길 수 있다면 이길 수 있는 선수 중 가장 점수가 낮은 선수를 선택한다.
+* 이길 수 없다면 남은 선수 중 가장 점수가 낮은 선수를 선택한다.
+
+```cpp
+#include <iostream>
+#include <set>
+#include <vector>
+using namespace std;
+
+int order(const vector<int>& russian, const vector<int>& korean) {
+  int n = russian.size(), ret = 0;
+  // 남은 선수 레이팅 순 정렬
+  multiset<int> ratings(korean.begin(), korean.end());
+  for(int rus = 0; rus < n; ++rus) {
+    // 이길 수 있는 선수 없음
+    if(*ratings.rbegin() < russian[rus]) {
+      // 최소 레이팅 선수 선택
+      ratings.erase(ratings.begin());
+    }
+    // 이길 수 있는 최소 레이팅 선수 선택
+    else {
+      ratings.erase(ratings.lower_bound(russian[rus]));
+      ++ret;
+    }
+  }
+  return ret;
+}
+
+int main() {
+  int c;
+
+  cin >> c;
+  for(int testCase = 0; testCase < c; ++testCase) {
+    int n, rating;
+    vector<int> russian, korean;
+
+    cin >> n;
+    for(int i = 0; i < n; ++i) {
+      cin >> rating;
+      russian.push_back(rating);
+    }
+    for(int i = 0; i < n; ++i) {
+      cin >> rating;
+      korean.push_back(rating);
+    }
+
+    cout << order(russian, korean) << '\n';
+  }
+
+  return 0;
+}
+```
