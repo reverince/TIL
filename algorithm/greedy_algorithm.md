@@ -110,3 +110,57 @@ int main() {
   return 0;
 }
 ```
+
+## [LUNCHBOX](https://algospot.com/judge/problem/read/LUNCHBOX)
+
+* 한 도시락을 먹는 데 걸리는 시간은 (지금까지 도시락을 데운 시간의 합) + (이 도시락을 먹는 시간)
+* 도시락을 먹는 시간이 모두 E로 같다면, 도시락을 어떤 순서로 데우든 점심 시간의 길이는 (모든 도시락을 데우는 시간) + (마지막 도시락을 먹는 시간)
+* 데우는 시간과 상관없이 먹는 데 오래 걸리는 도시락부터 데운다.
+
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+const int N_MAX = 10000;
+int n, m[N_MAX], e[N_MAX];
+
+// 최소 점심 시간을 계산하는 함수
+int heat() {
+  // 도시락 데우는 순서 결정
+  vector<pair<int, int> > order;
+  for(int i = 0; i < n; ++i) {
+    // 음수로 넣어 먹는 시간 내림차순 정렬
+    order.push_back(make_pair(-e[i], i));
+  }
+  sort(order.begin(), order.end());
+  int ret = 0, beginEat = 0;
+  for(int i = 0; i < n; ++i) {
+    // 먹는 시간이 긴 도시락부터 선택
+    int box = order[i].second;
+    // 먹기 시작하는 시간 계산
+    beginEat += m[box];
+    // 가장 먹는 데 오래 걸리는 도시락 시간 저장
+    ret = max(ret, beginEat + e[box]);
+  }
+  return ret;
+}
+
+int main() {
+  int t;
+
+  cin >> t;
+  for(int testCase = 0; testCase < t; ++testCase) {
+    cin >> n;
+    for(int i = 0; i < n; ++i)
+      cin >> m[i];
+    for(int i = 0; i < n; ++i)
+      cin >> e[i];
+
+    cout << heat() << '\n';
+  }
+
+  return 0;
+}
+```
