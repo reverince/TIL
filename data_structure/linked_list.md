@@ -34,6 +34,8 @@ struct Node {
   T datum;
   Node* next;
 
+  public:
+
   Node(T t) : datum(t), next(NULL) { }
 };
 
@@ -52,8 +54,11 @@ class LinkedList {
   }
 
   public:
+
   LinkedList() : head(NULL), size(0) { }
+
   unsigned int getSize() { return size; }
+
   void print() {
     Node<T>* ptr = head;
     while(ptr != NULL) {
@@ -62,10 +67,12 @@ class LinkedList {
     }
     cout << '\n';
   }
+
   void push_back(Node<T>* node) {
     if(head == NULL) {
       head = node;
-      size = 1;
+      // 여러 노드를 추가할 수 있으므로 길이 계산 필요
+      calcSize();
       return;
     }
     Node<T>* ptr = head;
@@ -86,11 +93,9 @@ int main() {
   cout << b.datum << '\n';
   cout << myLL.getSize() << '\n';
   myLL.push_back(&a);
-  cout << myLL.getSize() << '\n';  // ???
+  cout << myLL.getSize() << '\n';
   myLL.print();
 
   return 0;
 }
 ```
-
-* 크기가 제대로 출력되지 않는다!!
