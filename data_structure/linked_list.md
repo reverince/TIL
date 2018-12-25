@@ -99,3 +99,21 @@ int main() {
   return 0;
 }
 ```
+
+### 뒤에서 n번째 노드 찾기
+
+```cpp
+// 뒤에서 n번째 노드
+Node<T>* nThNodeFromBack(int n) {
+  Node<T>* ptr = head;
+  int toTravel = size - n;
+
+  if(n <= 0 || n > size) return NULL;
+  while(toTravel > 0) {
+    if(ptr == NULL) return NULL;
+    ptr = ptr->next;
+    --toTravel;
+  }
+  return ptr;
+}
+```
