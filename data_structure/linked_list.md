@@ -89,8 +89,6 @@ int main() {
   a.next = &b;
   LinkedList<int> myLL;
 
-  cout << a.datum << '\n';
-  cout << b.datum << '\n';
   cout << myLL.getSize() << '\n';
   myLL.push_back(&a);
   cout << myLL.getSize() << '\n';
@@ -103,7 +101,6 @@ int main() {
 ### 뒤에서 n번째 노드 찾기
 
 ```cpp
-// 뒤에서 n번째 노드
 Node<T>* nThNodeFromBack(int n) {
   Node<T>* ptr = head;
   int toTravel = size - n;
@@ -115,5 +112,22 @@ Node<T>* nThNodeFromBack(int n) {
     --toTravel;
   }
   return ptr;
+}
+```
+
+### 환형 연결 리스트 여부 검사
+
+```cpp
+#include <set>
+...
+bool isCircular() {
+  set<Node<T>* > nodes;
+  Node<T>* ptr = head;
+  while(ptr != NULL) {
+    if(nodes.find(ptr) != nodes.end()) return true;
+    nodes.insert(ptr);
+    ptr = ptr->next;
+  }
+  return false;
 }
 ```
