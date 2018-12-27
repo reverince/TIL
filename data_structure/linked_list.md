@@ -60,9 +60,14 @@ class LinkedList {
   unsigned int getSize() { return size; }
 
   void print() {
+    set<Node<T>*> nodeSet;
     Node<T>* ptr = head;
+
     while(ptr != NULL) {
       cout << ptr->datum << ' ';
+      // 순환 무한 출력 방지
+      if(nodeSet.find(ptr) != nodeSet.end()) break;
+      nodeSet.insert(ptr);
       ptr = ptr->next;
     }
     cout << '\n';
@@ -98,6 +103,8 @@ int main() {
 }
 ```
 
+* 순환 연결 리스트는 `2 3 5 2`처럼 출력한다.
+
 ### 뒤에서 n번째 노드 찾기
 
 ```cpp
@@ -121,13 +128,44 @@ Node<T>* nThNodeFromBack(int n) {
 #include <set>
 ...
 bool isCircular() {
-  set<Node<T>* > nodes;
+  set<Node<T>*> nodeSet;
   Node<T>* ptr = head;
+
   while(ptr != NULL) {
-    if(nodes.find(ptr) != nodes.end()) return true;
-    nodes.insert(ptr);
+    if(nodeSet.find(ptr) != nodeSet.end()) return true;
+    nodeSet.insert(ptr);
     ptr = ptr->next;
   }
   return false;
 }
 ```
+
+### 연결 리스트 뒤집기
+
+```cpp
+void reverse() {
+  if(head == NULL) return;
+
+  set<Node<T>*> nodeSet;
+  stack<Node<T>*> nodeStk;
+  Node<T>* ptr = head;
+
+  while(ptr != NULL) {
+    if(nodeSet.find(ptr) != nodeSet.end()) break;
+    nodeSet.insert(ptr);
+    nodeStk.push(ptr);
+    ptr = ptr->next;
+  }
+  head = nodeStk.top();
+  nodeStk.pop();
+  ptr = head;
+  while(!nodeStk.empty()) {
+    ptr->next = nodeStk.top();
+    nodeStk.pop();
+    ptr = ptr->next;
+  }
+  if(isCircular()) ptr->next = head;
+}
+```
+
+* 순환 리스트도 뒤집는다.
