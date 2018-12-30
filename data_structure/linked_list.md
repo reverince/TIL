@@ -47,7 +47,7 @@ class LinkedList {
   void calcSize() {
     Node<T>* ptr = head;
     size = 0;
-    while(ptr != NULL) {
+    while(ptr) {
       ++size;
       ptr = ptr->next;
     }
@@ -63,10 +63,13 @@ class LinkedList {
     set<Node<T>*> nodeSet;
     Node<T>* ptr = head;
 
-    while(ptr != NULL) {
+    while(ptr) {
       cout << ptr->datum << ' ';
       // 순환 무한 출력 방지
-      if(nodeSet.find(ptr) != nodeSet.end()) break;
+      if(nodeSet.find(ptr) != nodeSet.end()) {
+        cout << "...";
+        break;
+      }
       nodeSet.insert(ptr);
       ptr = ptr->next;
     }
@@ -81,29 +84,16 @@ class LinkedList {
       return;
     }
     Node<T>* ptr = head;
-    while(ptr->next != NULL) {
+    while(ptr->next) {
       ptr = ptr->next;
     }
     ptr->next = node;
     calcSize();
   }
 };
-
-int main() {
-  Node<int> a(2), b(3);
-  a.next = &b;
-  LinkedList<int> myLL;
-
-  cout << myLL.getSize() << '\n';
-  myLL.push_back(&a);
-  cout << myLL.getSize() << '\n';
-  myLL.print();
-
-  return 0;
-}
 ```
 
-* 순환 연결 리스트는 `2 3 5 2`처럼 출력한다.
+* 순환 연결 리스트는 `2 3 5 2 ...`처럼 출력한다.
 
 ### 뒤에서 n번째 노드 찾기
 
@@ -131,12 +121,43 @@ bool isCircular() {
   set<Node<T>*> nodeSet;
   Node<T>* ptr = head;
 
-  while(ptr != NULL) {
+  while(ptr) {
     if(nodeSet.find(ptr) != nodeSet.end()) return true;
     nodeSet.insert(ptr);
     ptr = ptr->next;
   }
   return false;
+}
+```
+
+### 순환 시작 노드
+
+```cpp
+Node<T>* beginOfLoop() {
+  Node<T> *fast = head, *slow = head;
+  bool isLoop = false;
+
+  while(fast && slow) {
+    slow = slow->next;
+    fast = fast->next;
+    if(fast == NULL) break;
+    fast = fast->next;
+    if(fast == NULL) break;
+
+    if(fast == slow) {
+      isLoop = true;
+      break;
+    }
+  }
+  if(isLoop) {
+    slow = head;
+    while(fast != slow) {
+      slow = slow->next;
+      fast = fast->next;
+    }
+    return slow;
+  }
+  return NULL;
 }
 ```
 
@@ -150,7 +171,7 @@ void reverse() {
   stack<Node<T>*> nodeStk;
   Node<T>* ptr = head;
 
-  while(ptr != NULL) {
+  while(ptr) {
     if(nodeSet.find(ptr) != nodeSet.end()) break;
     nodeSet.insert(ptr);
     nodeStk.push(ptr);
@@ -169,3 +190,41 @@ void reverse() {
 ```
 
 * 순환 리스트도 뒤집는다.
+
+### 테스트
+
+```cpp
+int main() {
+  Node<int> a(2), b(3), c(5), d(7);
+  a.next = &b;
+  b.next = &c;
+  c.next = &d;
+  d.next = &b;
+  LinkedList<int> myLL;
+
+  cout << "getSize() : " << myLL.getSize() << '\n';
+  myLL.push_back(&a);
+  cout << "* pushed node a into myLL.\n";
+  cout << "getSize() : " << myLL.getSize() << '\n';
+  cout << "nThNodeFromBack(2) : " << myLL.nThNodeFromBack(2)->datum << '\n';
+  cout << "isCircular() : " << myLL.isCircular() << '\n';
+  cout << "print() : ";
+  myLL.print();
+  cout << "beginOfCycling() : " << myLL.beginOfLoop()->datum << '\n';
+  myLL.reverse();
+  cout << "print() after reverse() : ";
+  myLL.print();
+
+  return 0;
+}
+```
+```
+getSize() : 0
+* pushed node a into myLL.
+getSize() : 4
+nThNodeFromBack(2) : 5
+isCircular() : 1
+print() : 2 3 5 7 3 ...
+beginOfCycling() : 3
+print() after reverse() : 7 5 3 2 7 ...
+```
