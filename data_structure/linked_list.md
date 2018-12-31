@@ -161,6 +161,37 @@ Node<T>* beginOfLoop() {
 }
 ```
 
+### 순환 길이
+
+```cpp
+int loopLength() {
+  Node<T> *fast = head, *slow = head;
+  bool isLoop = false;
+  int length = 0;
+
+  while(fast && slow) {
+    slow = slow->next;
+    fast = fast->next;
+    if(fast == NULL) break;
+    fast = fast->next;
+    if(fast == NULL) break;
+
+    if(fast == slow) {
+      isLoop = true;
+      break;
+    }
+  }
+  if(isLoop) {
+    do {
+      fast = fast->next;
+      ++length;
+    } while(fast != slow);
+    return length;
+  }
+  return 0;
+}
+```
+
 ### 연결 리스트 뒤집기
 
 ```cpp
@@ -189,28 +220,33 @@ void reverse() {
 }
 ```
 
-* 순환 리스트도 뒤집는다.
+* TODO: 순환 리스트 뒤집기 fix
 
 ### 테스트
 
 ```cpp
 int main() {
-  Node<int> a(2), b(3), c(5), d(7);
-  a.next = &b;
-  b.next = &c;
-  c.next = &d;
-  d.next = &b;
+  vector<Node<int> > vNodes;
   LinkedList<int> myLL;
 
-  cout << "getSize() : " << myLL.getSize() << '\n';
-  myLL.push_back(&a);
-  cout << "* pushed node a into myLL.\n";
+  for(int i = 0; i < 7; ++i) {
+    vNodes.push_back(Node<int>(i));
+  }
+  for(int i = 0; i < 6; ++i) {
+    vNodes[i].next = &vNodes[i+1];
+  }
+  vNodes[6].next = &vNodes[3];
+  myLL.push_back(&vNodes[0]);
+
+  cout << "print() : ";
+  myLL.print();
   cout << "getSize() : " << myLL.getSize() << '\n';
   cout << "nThNodeFromBack(2) : " << myLL.nThNodeFromBack(2)->datum << '\n';
   cout << "isCircular() : " << myLL.isCircular() << '\n';
   cout << "print() : ";
   myLL.print();
   cout << "beginOfCycling() : " << myLL.beginOfLoop()->datum << '\n';
+  cout << "loopLength() : " << myLL.loopLength() << '\n';
   myLL.reverse();
   cout << "print() after reverse() : ";
   myLL.print();
