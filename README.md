@@ -26,6 +26,9 @@ Today I Learned,
 * 자료구조 ([data_structure/](/data_structure))
   * 연결 리스트 ([linked_list.md](/data_structure/linked_list.md))
 * 기타 ([etc/](/etc))
+  * 안티패턴([anti-pattern.md](/etc/anti-pattern.md))
+  * 버전 관리([version_control.md](/etc/version_control.md))
+  * 파이어베이스([firebase.md](/etc/firebase.md))
 
 ### 진행 중인 프로젝트
 
