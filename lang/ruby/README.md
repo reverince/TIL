@@ -2,14 +2,14 @@
 
 하위 : [루비 스타일 가이드](./style_guide.md), [레일즈](/rails)
 
-* [Ruby-Doc.org](https://ruby-doc.org)
-* [Tutorialspoint Ruby Tutorial](https://www.tutorialspoint.com/ruby/index.htm)
+- [Ruby-Doc.org](https://ruby-doc.org)
+- [Tutorialspoint Ruby Tutorial](https://www.tutorialspoint.com/ruby/index.htm)
 
 
 ## 팁 & 트릭
 
-* [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
-* [11 Ruby tricks You Haven't Seen Befroe](https://www.rubyguides.com/2016/01/ruby-tricks/)
+- [21 Ruby Tricks You Should Be Using In Your Own Code](http://www.rubyinside.com/21-ruby-tricks-902.html)
+- [11 Ruby tricks You Haven't Seen Befroe](https://www.rubyguides.com/2016/01/ruby-tricks/)
 
 ##### DRY by Enumerator
 
@@ -129,9 +129,9 @@ end
 
 ## [연산자](https://www.tutorialspoint.com/ruby/ruby_operators.htm)
 
-* `.eql?` : 자료형과 값이 같은지 확인한다.
-* `.equal?` : 객체 ID가 같은지 확인한다.
-* `defined?` : 변수나 메소드 등이 정의되었는지 확인한다.
+- `.eql?` : 자료형과 값이 같은지 확인한다.
+- `.equal?` : 객체 ID가 같은지 확인한다.
+- `defined?` : 변수나 메소드 등이 정의되었는지 확인한다.
 
 
 ## 입출력
@@ -216,7 +216,7 @@ sweet_lmd = ->{ puts "Hello, ->!" }
 
 ##### `Proc` vs `lambda`
 
-* `Proc`은 인자가 부족하면 `nil`로 채워지지만 `lambda`는 `ArgumentError`가 발생한다.
+- `Proc`은 인자가 부족하면 `nil`로 채워지지만 `lambda`는 `ArgumentError`가 발생한다.
 
 ```rb
 prc = Proc.new { |a, b| a + b }
@@ -230,7 +230,7 @@ lmd.call(1)
 
 ## 객체
 
-* 접근 제어
+- 접근 제어
   ```ruby
   class Class
     def method
@@ -240,7 +240,7 @@ lmd.call(1)
   end
   ```
 
-* 클래스 상수
+- 클래스 상수
   ```ruby
   class Class
     CLASSCONST = "This is a constant."
@@ -252,19 +252,19 @@ lmd.call(1)
 
 ## [예약 변수](https://www.tutorialspoint.com/ruby/ruby_predefined_variables.htm) (Predefined Variable)
 
-* `$!` : 마지막 오류(Exception). `rescue Exception => e`의 `e`처럼 접근할 수 있다.
-* `$@` : 마지막 오류의 백트레이스.
-* `$/` : 입력 분리자. 기본값은 `\n`.
-* `$\` : 출력 분리자. 기본값은 `nil`.
-* `$,` : `print()`와 `Array#join` 메소드의 분리자. 기본값은 `nil`.
-* `$;` : `String#split`의 분리자. 기본값은 `nil`.
-* `$_` : 로컬에서 `gets`나 `readline`으로 입력받은 마지막 값. 기본값은 `nil`.
-* `$~` : 로컬에서 `Regex#match`에 의한 마지막 매치 데이터(`MatchData`).
-* `$&` : 로컬에서 `Regex#match`에 의한 마지막 매치 문자열.
-* `$0` : 지금 실행 중인 루비 프로그램 이름.
-* `$$` : 지금 실행 중인 루비 프로그램 PID.
-* `$?` : 마지막으로 종료된 프로세스의 종료 상태(exit status).
-* `$DEBUG`(`$-d`) : `-debug` 혹은 `-d` 옵션 적용 여부.
+- `$!` : 마지막 오류(Exception). `rescue Exception => e`의 `e`처럼 접근할 수 있다.
+- `$@` : 마지막 오류의 백트레이스.
+- `$/` : 입력 분리자. 기본값은 `\n`.
+- `$\` : 출력 분리자. 기본값은 `nil`.
+- `$,` : `print()`와 `Array#join` 메소드의 분리자. 기본값은 `nil`.
+- `$;` : `String#split`의 분리자. 기본값은 `nil`.
+- `$_` : 로컬에서 `gets`나 `readline`으로 입력받은 마지막 값. 기본값은 `nil`.
+- `$~` : 로컬에서 `Regex#match`에 의한 마지막 매치 데이터(`MatchData`).
+- `$&` : 로컬에서 `Regex#match`에 의한 마지막 매치 문자열.
+- `$0` : 지금 실행 중인 루비 프로그램 이름.
+- `$$` : 지금 실행 중인 루비 프로그램 PID.
+- `$?` : 마지막으로 종료된 프로세스의 종료 상태(exit status).
+- `$DEBUG`(`$-d`) : `-debug` 혹은 `-d` 옵션 적용 여부.
 
 
 ## [소켓](https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/Socket.html)
@@ -314,7 +314,7 @@ s.close
 
 ## [스레드](https://ruby-doc.org/core-2.5.0/Thread.html)
 
-* 프로세스(메인 스레드)가 종료되면 모든 스레드는 완료 여부에 상관없이 삭제(`kill`)당하기 때문에 `join`으로 실행 완료를 기다려줘야 한다.
+- 프로세스(메인 스레드)가 종료되면 모든 스레드는 완료 여부에 상관없이 삭제(`kill`)당하기 때문에 `join`으로 실행 완료를 기다려줘야 한다.
   ```ruby
   # 새로운 스레드
   thr = Thread.new { puts "Whats the big deal" }
@@ -323,7 +323,7 @@ s.close
   thr.join
   ```
 
-* 여러 개의 스레드를 만드는 경우 배열과 `each`를 사용할 수 있다.
+- 여러 개의 스레드를 만드는 경우 배열과 `each`를 사용할 수 있다.
   ```ruby
   threads = []
   threads << Thread.new { puts "Whats the big deal" }
@@ -332,7 +332,7 @@ s.close
   threads.each { |thr| thr.join }
   ```
 
-* `exit`, `status` 등의 메서드를 사용할 수 있다.
+- `exit`, `status` 등의 메서드를 사용할 수 있다.
   ```ruby
   thr = Thread.new {sleep}
 
@@ -346,8 +346,8 @@ s.close
 
 ### 상호 배제 (Mutual Exclusion; Mutex)
 
-* DB의 **원자성** 확보
-  * 실행 중인 여러 개의 스레드가 같은 데이터에는 동시에 접근하지 못해야 한다.
+- DB의 **원자성** 확보
+  - 실행 중인 여러 개의 스레드가 같은 데이터에는 동시에 접근하지 못해야 한다.
 
 ###### counter_no_mutex.rb
 

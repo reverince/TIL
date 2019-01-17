@@ -2,7 +2,7 @@
 
 참조 : [프로그래밍 대회에서 배우는 알고리즘 문제 해결 전략](http://book.algospot.com/) - _구종만_
 
-* 메모이제이션은 함수가 동일한 인자에 대해 동일한 값을 반환하는 참조 투명성을 가져야 한다. 즉 순수 함수여야 한다.
+- 메모이제이션은 함수가 동일한 인자에 대해 동일한 값을 반환하는 참조 투명성을 가져야 한다. 즉 순수 함수여야 한다.
 
 ## 이항계수
 
@@ -82,11 +82,11 @@ int main() {
 
 ## [WILDCARD](https://algospot.com/judge/problem/read/WILDCARD)
 
-* 고려해야 하는 경우
-  * 패턴(`w`) 또는 문자열(`s`)의 끝에 도달한 경우
-  * 같은 위치에 글자가 다른 경우 : `w[pos] != s[pos]`
-  * `*`를 만난 경우
-* 모든 문자열의 길이가 100 이하이므로 최대 가짓수는 `101 * 101 = 10201`이다. 비둘기집의 원리에 따라 `101 * 101` 배열에 모든 경우를 저장할 수 있다.
+- 고려해야 하는 경우
+  - 패턴(`w`) 또는 문자열(`s`)의 끝에 도달한 경우
+  - 같은 위치에 글자가 다른 경우 : `w[pos] != s[pos]`
+  - `*`를 만난 경우
+- 모든 문자열의 길이가 100 이하이므로 최대 가짓수는 `101 * 101 = 10201`이다. 비둘기집의 원리에 따라 `101 * 101` 배열에 모든 경우를 저장할 수 있다.
 
 ```cpp
 #include <iostream>
@@ -190,10 +190,10 @@ int main() {
 
 ### [TRIPATHCNT](https://algospot.com/judge/problem/read/TRIPATHCNT)
 
-* count(y, x)는 아래 세 값 중 최댓값
-  * count(y+1, x) ( if path(y+1, x) > path(y+1, x+1) )
-  * count(y+1, x+1) ( if path(y+1, x) < path(y+1, x+1) )
-  * count(y+1, x) + count(y+1, x+1) ( if path(y+1, x) = path(y+1, x+1) )
+- count(y, x)는 아래 세 값 중 최댓값
+  - count(y+1, x) ( if path(y+1, x) > path(y+1, x+1) )
+  - count(y+1, x+1) ( if path(y+1, x) < path(y+1, x+1) )
+  - count(y+1, x) + count(y+1, x+1) ( if path(y+1, x) = path(y+1, x+1) )
 
 ```cpp
 #include <iostream>
@@ -377,10 +377,10 @@ int main() {
 
 ## [TILING2](https://algospot.com/judge/problem/read/TILING2)
 
-* 채우는 방법은 2가지
-  * 세로 타일 1개로 1칸 너비를 채우는 방법
-  * 가로 타일 2개로 2칸 너비를 채우는 방법
-* 따라서 tiling(n) = tiling(n-1) + tiling(n-2) (n은 채워야 하는 너비)
+- 채우는 방법은 2가지
+  - 세로 타일 1개로 1칸 너비를 채우는 방법
+  - 가로 타일 2개로 2칸 너비를 채우는 방법
+- 따라서 tiling(n) = tiling(n-1) + tiling(n-2) (n은 채워야 하는 너비)
 
 ```cpp
 #include <iostream>
@@ -419,12 +419,12 @@ int main() {
 
 ### [ASYMTILING](https://algospot.com/judge/problem/read/ASYMTILING)
 
-* 비대칭 타일링 방법의 수를 세는 대신 대칭 방법의 수를 세서 뺀다.
-* 대칭으로 채우는 방법은 3가지
-  * 반으로 나눠서 양쪽이 대칭인 경우
-  * 반으로 나누고 가운데 세로 타일 1개가 놓인 경우
-  * 반으로 나누고 가운데 가로 타일 2개가 놓인 경우
-* 한쪽 반을 채우면 반대쪽 반은 대칭으로 정해지므로 한쪽을 채우는 경우만 세면 된다.
+- 비대칭 타일링 방법의 수를 세는 대신 대칭 방법의 수를 세서 뺀다.
+- 대칭으로 채우는 방법은 3가지
+  - 반으로 나눠서 양쪽이 대칭인 경우
+  - 반으로 나누고 가운데 세로 타일 1개가 놓인 경우
+  - 반으로 나누고 가운데 가로 타일 2개가 놓인 경우
+- 한쪽 반을 채우면 반대쪽 반은 대칭으로 정해지므로 한쪽을 채우는 경우만 세면 된다.
 
 ```cpp
 #include <iostream>

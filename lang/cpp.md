@@ -5,21 +5,21 @@
 
 ### 반복자 (Iterator)
 
-* 입력 반복자 : 단방향 한 번 종주 가능
-* 전방 반복자 : 단방향으로 여러 번 종주 가능
-* 양방향 반복자 : 양방향으로 여러 번 종주 가능
-* 임의 접근 반복자 : 배열처럼 상수 시간에 임의 접근 가능
+- 입력 반복자 : 단방향 한 번 종주 가능
+- 전방 반복자 : 단방향으로 여러 번 종주 가능
+- 양방향 반복자 : 양방향으로 여러 번 종주 가능
+- 임의 접근 반복자 : 배열처럼 상수 시간에 임의 접근 가능
 
 #### 반복자 속성
 
-* `iterator_traits<T>::value_type`
-* `iterator_traits<T>::difference_type`
-* `iterator_traits<T>::iterator_category`
+- `iterator_traits<T>::value_type`
+- `iterator_traits<T>::difference_type`
+- `iterator_traits<T>::iterator_category`
 
 #### 관련 함수
 
-* `std::advance(it, n)` : `it` 반복자를 `n`칸 다음으로 전진시킨다.
-* `std::partition_point(first, last, pred)` : 참 또는 거짓을 반환하는 `pred` 함수에 의해 두 파티션으로 나뉜 컨테이너에서 첫 번째 파티션의 끝 반복자를 반환한다.
+- `std::advance(it, n)` : `it` 반복자를 `n`칸 다음으로 전진시킨다.
+- `std::partition_point(first, last, pred)` : 참 또는 거짓을 반환하는 `pred` 함수에 의해 두 파티션으로 나뉜 컨테이너에서 첫 번째 파티션의 끝 반복자를 반환한다.
 
 ### 컨테이너 (Container)
 
@@ -46,9 +46,9 @@ copy_n(arr, Size, arr2);  // 배열 복사
 iota(arr, arr+Size, 20)  //=> {20, 21, 22};
 ```
 
-* `all_of()`, `any_of()`, `none_of()`
-* `copy_n()`
-* `iota(first, last, val)` : 연속된 값 저장
+- `all_of()`, `any_of()`, `none_of()`
+- `copy_n()`
+- `iota(first, last, val)` : 연속된 값 저장
   ```cpp
   template <class ForwardIterator, class T>
   void iota (ForwardIterator first, ForwardIterator last, T val)
@@ -65,19 +65,19 @@ iota(arr, arr+Size, 20)  //=> {20, 21, 22};
 
 요소가 추가되거나 제거될 때 자동으로 크기가 변하는 동적 배열이다. 배열처럼 연속된 주소에 저장되기 때문에 반복자로 접근할 수 있다.
 
-* `assign(count, value)` : `count`개의 `value`로 벡터를 초기화한다.
-* `push_back(value)`, `pop_back()`
-* `insert(pos, value)`, `erase(pos)`
-* `clear()`
-* `front()`, `back()`, `size()`, `empty()`
-* `begin()`, `end()`
+- `assign(count, value)` : `count`개의 `value`로 벡터를 초기화한다.
+- `push_back(value)`, `pop_back()`
+- `insert(pos, value)`, `erase(pos)`
+- `clear()`
+- `front()`, `back()`, `size()`, `empty()`
+- `begin()`, `end()`
 
 ##### 리스트 (`list`)
 
 리스트는 배열과 달리 메모리에 분산 저장된다. 따라서 횡단하는 데 오래 걸리지만 주소를 아는 경우 삽입과 삭제가 빠르다. 일반적으로 리스트라 하면 이중 연결 리스트(Doubly Linked List)를 말한다. 단일 연결 리스트(Singly Linked List)에는 `forward_list`를 사용한다.
 
-* `push_front(value)`, `pop_front()`
-* `reverse()`, `sort()`
+- `push_front(value)`, `pop_front()`
+- `reverse()`, `sort()`
 
 리스트 반복자(`list<T>::iterator`)를 사용해 요소에 접근해야 한다. 마지막 요소는 `--li.end()`임에 유의.
 
@@ -109,7 +109,7 @@ void printList(list<int> li) {
 
 **값**이 곧 **키**이다. **키**는 유일(unique)하며 불변(immutable)하기 때문에 세트의 요소는 중복되지 않으며 수정할 수 없다. 물론 어떤 요소를 삭제하고 다른 값의 요소를 삽입하는 것은 가능하다.
 
-* `erase(s.begin(), 30)`처럼 `erase()`에 범위를 지정할 수 있다.
+- `erase(s.begin(), 30)`처럼 `erase()`에 범위를 지정할 수 있다.
 
 #### 맵 (Map)
 
@@ -136,12 +136,12 @@ void printMap(map<int, int> mp) {
 
 기능이 제한되거나 변형된 컨테이너. 반복자를 지원하지 않는다.
 
-* 스택 (`stack`)
+- 스택 (`stack`)
 
-* 큐 (`queue`)
+- 큐 (`queue`)
 
-* 우선순위 큐(`priority_queue`) : 값이 자동으로 정렬되는 큐. 기본적으로 높은 값부터 pop된다. `#include <queue>`가 필요하다.
-  * `priority_queue<T, vector<T>, greater<T>>`로 선언하면 작은 값을 우선한다. `vector<T>`는 큐의 구현체.
+- 우선순위 큐(`priority_queue`) : 값이 자동으로 정렬되는 큐. 기본적으로 높은 값부터 pop된다. `#include <queue>`가 필요하다.
+  - `priority_queue<T, vector<T>, greater<T>>`로 선언하면 작은 값을 우선한다. `vector<T>`는 큐의 구현체.
 
 
 ## 람다 식 (Lambda Expression)
@@ -152,7 +152,7 @@ void printMap(map<int, int> mp) {
 [=](int x)->int { return x * x; }
 ```
 
-* `[]` : 람다 식에서 캡처(사용)할 외부 변수. 비워두면 사용하지 않고, `=`이면 전부 사용하고, `&`면 참조형으로 캡처하는 등. 변수명을 특정할 수 있다. 전역 변수는 기본적으로 사용한다.
-* `()` : 람다 식이 받는 인자
-* `->` : 람다 식이 반환하는 자료형 (생략 가능)
-* `{}` : 식 내용
+- `[]` : 람다 식에서 캡처(사용)할 외부 변수. 비워두면 사용하지 않고, `=`이면 전부 사용하고, `&`면 참조형으로 캡처하는 등. 변수명을 특정할 수 있다. 전역 변수는 기본적으로 사용한다.
+- `()` : 람다 식이 받는 인자
+- `->` : 람다 식이 반환하는 자료형 (생략 가능)
+- `{}` : 식 내용

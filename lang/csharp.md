@@ -3,13 +3,13 @@
 
 ## Overloading / Overriding / Hiding
 
-* [함수 오버로딩](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C)(Function Overloading) : 이름은 같으나 매개변수나 반환 형식이 다른 여러 개의 함수를 만드는 것.
+- [함수 오버로딩](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C)(Function Overloading) : 이름은 같으나 매개변수나 반환 형식이 다른 여러 개의 함수를 만드는 것.
 
-* [연산자 오버로딩](https://ko.wikipedia.org/wiki/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)(Operator Overloading) : 연산자가 피연산자에 대해 수행하는 일을 **재구성하는** 것.
+- [연산자 오버로딩](https://ko.wikipedia.org/wiki/%EC%97%B0%EC%82%B0%EC%9E%90_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9)(Operator Overloading) : 연산자가 피연산자에 대해 수행하는 일을 **재구성하는** 것.
 
-* [메소드 오버라이딩](https://ko.wikipedia.org/wiki/%EB%A9%94%EC%86%8C%EB%93%9C_%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)(Method Overriding) : 부모 클래스의 메소드를 자식 클래스가 **확장하는** 것.
+- [메소드 오버라이딩](https://ko.wikipedia.org/wiki/%EB%A9%94%EC%86%8C%EB%93%9C_%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9)(Method Overriding) : 부모 클래스의 메소드를 자식 클래스가 **확장하는** 것.
 
-* [멤버 하이딩](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords)(Member Hiding) : 부모 클래스의 메소드를 자식 클래스가 **숨기는** (혹은 새로 구성하는) 것.
+- [멤버 하이딩](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords)(Member Hiding) : 부모 클래스의 메소드를 자식 클래스가 **숨기는** (혹은 새로 구성하는) 것.
 
 
 ## `base` : [부모 클래스 멤버 접근](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/keywords/base)
@@ -21,7 +21,7 @@ class Apple : Fruit
 }
 ```
 
-* 자식 클래스에서 부모 클래스 멤버에 접근한다.
+- 자식 클래스에서 부모 클래스 멤버에 접근한다.
 
 
 ## `delegate` : [대리자 사용](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/delegates/using-delegates)(위임)
@@ -38,11 +38,11 @@ m += Walk;
 m(1.0f)  // Jump(1.0f); Walk(1.0f);
 ```
 
-* C++의 함수 포인터처럼 메소드를 캡슐화한다.
+- C++의 함수 포인터처럼 메소드를 캡슐화한다.
 
-* .NET 라이브러리에 이미 정의된 위임형을 사용할 수 있다.
-  * 반환이 없는 경우 : `Action<T>`
-  * 반환이 있는 경우 : `Func<T, TResult>`
+- .NET 라이브러리에 이미 정의된 위임형을 사용할 수 있다.
+  - 반환이 없는 경우 : `Action<T>`
+  - 반환이 있는 경우 : `Func<T, TResult>`
 
 
 ## `enum` : [열거형 형식](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/enumeration-types)
@@ -57,7 +57,7 @@ int directionNumber = (int)myDirection;  // 0
 
 ## `foreach`
 
-* `foreach`는 실행 중 요소가 추가 혹은 삭제되면 예측하지 못한 결과를 불러일으킬 수 있으므로 읽기 전용 `IEnumerable<T>`와 사용하는 것이 좋다.
+- `foreach`는 실행 중 요소가 추가 혹은 삭제되면 예측하지 못한 결과를 불러일으킬 수 있으므로 읽기 전용 `IEnumerable<T>`와 사용하는 것이 좋다.
 
   ```cs
   static readonly IEnumerable<string> faces = new[] { "normal", "smile", "angry" };
@@ -75,12 +75,12 @@ public T genericMethod<T>(T param) where T : new()
 }
 ```
 
-* `where`으로 `T`의 제약 조건을 지정할 수 있다.
+- `where`으로 `T`의 제약 조건을 지정할 수 있다.
 
 
 ## `yield`
 
-* `foreach`를 사용하는 경우
+- `foreach`를 사용하는 경우
 
   ```cs
   using System;
@@ -103,7 +103,7 @@ public T genericMethod<T>(T param) where T : new()
   }
   ```
 
-* `IEnumerator`를 사용하는 경우
+- `IEnumerator`를 사용하는 경우
 
   ```cs
   using System;
@@ -128,7 +128,7 @@ public T genericMethod<T>(T param) where T : new()
   }
   ```
 
-* 유니티에서의 용례
+- 유니티에서의 용례
 
   ```cs
   void Start()
@@ -181,9 +181,9 @@ public class Player
 }
 ```
 
-* 접근자(getter)와 설정자(setter)를 더 간단하게 구현할 수 있다.
+- 접근자(getter)와 설정자(setter)를 더 간단하게 구현할 수 있다.
 
-* `get`이나 `set`을 생략해 읽기 전용이나 쓰기 전용으로 만들 수 있다.
+- `get`이나 `set`을 생략해 읽기 전용이나 쓰기 전용으로 만들 수 있다.
 
 ### [인덱서](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/indexers)(Indexers)
 
@@ -206,7 +206,7 @@ class Program
 }
 ```
 
-* 클래스나 구조체의 인스턴스를 배열처럼 인덱싱한다.
+- 클래스나 구조체의 인스턴스를 배열처럼 인덱싱한다.
 
 
 ## [확장명 메소드](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)(Extension Methods)

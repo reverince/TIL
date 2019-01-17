@@ -68,9 +68,9 @@ Rails.application.routes.draw do
 end
 ```
 
-* `rails routes`
-* `_path`는 루트(`/`)에 대한 상대 경로, `_url`은 절대 경로
-* `resources` : 모델에 대한 RESTful 라우트 생성
+- `rails routes`
+- `_path`는 루트(`/`)에 대한 상대 경로, `_url`은 절대 경로
+- `resources` : 모델에 대한 RESTful 라우트 생성
 
 | Action | HTTP 요청 | URL | 라우트 이름 |
 |:-:|:-:|-|-|
@@ -161,8 +161,8 @@ end
 </p>
 ```
 
-* 변수 : `provide`와 `yield` 활용
-* 레이아웃 : `render`와 `_<NAME>.html.erb` 활용
+- 변수 : `provide`와 `yield` 활용
+- 레이아웃 : `render`와 `_<NAME>.html.erb` 활용
 
 ## 테스트 (`test/`)
 
@@ -184,9 +184,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 end
 ```
 
-* `rails test` 혹은 `rails t`
-  * `rails test:models`처럼 부분 테스트 가능
-* `def setup` : 테스트 시작 전 자동으로 실행되는 메소드
+- `rails test` 혹은 `rails t`
+  - `rails test:models`처럼 부분 테스트 가능
+- `def setup` : 테스트 시작 전 자동으로 실행되는 메소드
 
 ### 픽스처 (`test/fixtures`)
 
@@ -229,7 +229,7 @@ end
 rails db:migrate
 ```
 
-* `rails console --sandbox`로 테스트
+- `rails console --sandbox`로 테스트
   ```
   user = User.new(name: "cho", email: "reverince@gmail.com")
   user.valid?
@@ -297,7 +297,7 @@ rails g migration add_password_digest_to_users password_digest:string
   end
   ```
 
-  * 마이그레이션 이름이 `to_users`로 끝나기 때문에 레일즈에서 자동으로 `:users`를 입력해 준다.
+  - 마이그레이션 이름이 `to_users`로 끝나기 때문에 레일즈에서 자동으로 `:users`를 입력해 준다.
 
 1. `rails db:migrate`
 
@@ -316,4 +316,4 @@ rails g migration add_password_digest_to_users password_digest:string
   ```
 
 
-* `user.authenticate(password)`로 인증
+- `user.authenticate(password)`로 인증

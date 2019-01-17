@@ -7,9 +7,9 @@
 1. `npm install -g firebase-tools`
 
 1. `firebase login`
-  * 클라우드 환경에서는 `--no-localhost`
+  - 클라우드 환경에서는 `--no-localhost`
   
 1. `firebase use --add`
 
 1. `firebase serve`
-  * 클라우드 환경에서는 `--only 0.0.0.0`
+  - 클라우드 환경에서는 `--only 0.0.0.0` 혹은 `--host 0.0.0.0`
