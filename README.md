@@ -7,6 +7,7 @@ Today I Learned,
 - Node.js ([nodejs/](/nodejs))
   - 채팅 앱 ([chatapp.md](/nodejs/chatapp.md))
 - Rails ([rails/](/rails))
+- 디지털 신호 처리 ([digital_signal_process/](/digital_signal_process))
 - 안드로이드 ([android/](/android))
   - 기초 ([basics.md](/android/basics.md))
 - 알고리즘 ([algorithm/](/algorithm))
@@ -31,7 +32,7 @@ Today I Learned,
   - 버전 관리([version_control.md](/etc/version_control.md))
   - 파이어베이스([firebase.md](/etc/firebase.md))
 
-### 진행 중인 프로젝트
+### 프로젝트
 
 - [Jekyll 블로그](https://reverince.github.io)
 - Discord.py 봇
