@@ -23,6 +23,8 @@ Today I Learned,
   - 루비 ([ruby/](/lang/ruby))
   - 마크다운 ([markdown.md](/lang/markdown.md))
   - 정규 표현식 ([regex.md](/lang/regex.md))
+- 운영체제 ([os/](/os))
+  - 상호 배제 ([mutual_exclusion.md](/os/mutual_exclusion.md))
 - 유니티 ([unity/](/unity))
 - 자료구조 ([data_structure/](/data_structure))
   - 연결 리스트 ([linked_list.md](/data_structure/linked_list.md))
