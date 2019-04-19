@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="HelloUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HelloUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RelativePanel BorderBrush="LightSlateGray" BorderThickness="5" Background="AliceBlue">
+
+            <StackPanel x:Name="stk1" Margin="50" Orientation="Vertical">
+                <TextBlock Text="Select your color" />
+                <CheckBox x:Name="checkR" Content="Red" />
+                <CheckBox x:Name="checkG" Content="Green" />
+                <CheckBox x:Name="checkB" Content="Blue" />
+                <Button x:Name="btnColorChoice" Content="Choose" Click="BtnColorChoice_Click">
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <TextBlock x:Name="txtColorResult" Text="This is Flyout" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+
+                <TextBlock x:Name="txtRadio" Text="Choose your color" Margin="0 10"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="Red" Tag="Red" GroupName="color" Checked="RadioButton_Checked" />
+                    <RadioButton Content="Green" Tag="Green" GroupName="color" Checked="RadioButton_Checked" />
+                    <RadioButton Content="Blue" Tag="Blue" GroupName="color" Checked="RadioButton_Checked" />
+                </StackPanel>
+
+                <TextBlock x:Name="txtRepeat" Text="Click the button to adjust font size" Margin="0 10"/>
+                <RepeatButton x:Name="rptIncrease" Content="Increase" Delay="500" Interval="100" Click="RptIncrease_Click" Margin="0 10"/>
+                <RepeatButton x:Name="rptDecrease" Content="Decrease" Delay="500" Interval="100" Click="RptDecrease_Click" Margin="0 10"/>
+
+                <TextBlock x:Name="txtSlider" Text="Drag slider to change text size" Margin="0 10" FontFamily="Segoe UI"/>
+                <Slider x:Name="slider1" Orientation="Horizontal" Value="14" Minimum="10" Maximum="20" TickFrequency="2" TickPlacement="Inline" ValueChanged="Slider1_ValueChanged"/>
+
+                <ToggleSwitch x:Name="toggleSwitch1" IsOn="False" Toggled="ToggleSwitch1_Toggled" OffContent="Show Text" OnContent="Hide Text" />
+                <TextBlock x:Name="txtToggleSwitch" Text="You can see me." Visibility="Collapsed"/>
+            </StackPanel>
+
+            <StackPanel x:Name="stk2" Margin="50" Orientation="Vertical" RelativePanel.RightOf="stk1">
+                <TextBlock Text="Here is another StackPanel" />
+
+                <Button x:Name="btnMessageDialog" Content="Show Message Dialog" Click="BtnMessageDialog_Click" Margin="0 10"/>
+                <Button x:Name="btnContentDialog" Content="Show Content Dialog" Click="BtnContentDialog_Click" Margin="0 10" />
+                <Button x:Name="btnWithImage" Margin="0 10">
+                    <Image Source="Assets/StoreLogo.png" Width="100" />
+                </Button>
+
+                <TextBlock Margin="0 10">
+                    <Span>
+                        <Hyperlink NavigateUri="https://asp.net">ASP.NET</Hyperlink>
+                        <Run>by Microsoft</Run>
+                        <Hyperlink NavigateUri="https://oracle.com">Java</Hyperlink>
+                        <Run>by Oracle</Run>
+                    </Span>
+                </TextBlock>
+
+                <TextBox x:Name="txtBox1" Text="Remove me" Margin="0 10" />
+            </StackPanel>
+
+            <StackPanel x:Name="stk3" Margin="50" Orientation="Vertical" RelativePanel.RightOf="stk2">
+                <ListView x:Name="listView1" Header="Color Chooser" SelectionChanged="ListView1_SelectionChanged" />
+            </StackPanel>
+
+            <StackPanel x:Name="stk4" Margin="50" Orientation="Vertical" RelativePanel.RightOf="stk3">
+                <TextBox x:Name="txtBoxSave" Text="Swift as a shadow!" Margin="0 10" />
+                <Button x:Name="btnSavePicker" Content="SavePicker" Click="BtnSavePicker_Click" Margin="0 10">
+                    <FlyoutBase.AttachedFlyout>
+                        <Flyout Placement="Right">
+                            <TextBlock x:Name="txtSavePickerResult" />
+                        </Flyout>
+                    </FlyoutBase.AttachedFlyout>
+                </Button>
+                <Button x:Name="btnSave" Content="빠른 저장" Click="BtnSave_Click" Margin="0 10">
+                    <FlyoutBase.AttachedFlyout>
+                        <Flyout Placement="Right">
+                            <TextBlock x:Name="txtSaveResult" />
+                        </Flyout>
+                    </FlyoutBase.AttachedFlyout>
+                </Button>
+                <Button x:Name="btnLoad" Content="빠른 불러오기" Click="BtnLoad_Click" Margin="0 10">
+                    <FlyoutBase.AttachedFlyout>
+                        <Flyout Placement="Right">
+                            <TextBlock x:Name="txtLoadResult" />
+                        </Flyout>
+                    </FlyoutBase.AttachedFlyout>
+                </Button>
+            </StackPanel>
+
+        </RelativePanel>
+
+    </Grid>
+</Page>
