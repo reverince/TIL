@@ -10,8 +10,8 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Contact" Label="A" Click="AppBarButton_Click"/>
-            <AppBarButton Icon="Favorite" Label="B" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Contact" Label="A" Click="AppBarButton_Click" Style="{ThemeResource AppBarButtonRevealStyle}"/>
+            <AppBarButton Icon="Favorite" Label="B" Click="AppBarButton_Click" Style="{ThemeResource AppBarButtonRevealStyle}"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="ContactInfo" Label="대하여" Click="AppBarButton_Click"/>
             </CommandBar.SecondaryCommands>

@@ -120,6 +120,7 @@ namespace HelloUWP
                 txtSlider.FontSize = slider.Value;
             }
         }
+
         private void ToggleSwitch1_Toggled(object sender, RoutedEventArgs e)
         {
             ToggleSwitch toggleSwitch = sender as ToggleSwitch;
@@ -136,6 +137,18 @@ namespace HelloUWP
         {
             progress = progress < progressBar1.Maximum ? progress + 1 : 0;
             progressBar1.Value = progress;
+        }
+
+        private void ToggleSound_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (ElementSoundPlayer.State != ElementSoundPlayerState.On)
+            {
+                ElementSoundPlayer.State = ElementSoundPlayerState.On;
+            }
+            else
+            {
+                ElementSoundPlayer.State = ElementSoundPlayerState.Off;
+            }
         }
 
         private async void BtnMessageDialog_Click(object sender, RoutedEventArgs e)
