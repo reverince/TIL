@@ -45,3 +45,42 @@
 - 이벤트 리스너(Event Listener) : 콜백 메소드 하나를 포함하는 뷰 클래스의 인터페이스. 리스너가 등록된 뷰가 트리거되면 안드로이드 프레임워크에 의해 메소드가 호출된다.
 - 이벤트 리스너 등록(Event Listener Registration) : 이벤트 리스너가 핸들러를 호출할 수 있도록 핸들러가 리스너를 등록하는 과정.
 - 이벤트 핸들러(Event Handler) : 발생한 이벤트에 이벤트 리스너가 등록되어 있으면 리스너는 핸들러를 호출한다.
+
+이벤트 리스너 및 핸들러의 예는 다음과 같다.
+
+- `onClick()` & `OnClickListener()`
+- `onLongClick()` & `OnLongClickListener()`
+- `onFocusChange()` & `OnFocusChangeListener()`
+- `onKey()` & `OnKeyListener()`
+- `onTouch()` & `OnTouchListener()`
+- `onMenuItemClick()` & `OnMenuItemClickListener()`
+- `onCreateContextMenu()` & `OnCreateContextMenuItemListener()`
+
+### 이벤트 리스너 등록
+
+이벤트 리스너를 등록하는 방법에는 대표적으로 3가지가 있다.
+
+- 익명 내부 클래스를 이용하는 방법\
+  `btn.setOnClickListener(new View.OnClickListener() { ... });`
+- 액티비티 클래스에서 리스너 인터페이스 구현\
+  `public class MyActivity extends Activity implements View.OnClickListener { ... }`
+- XML 레이아웃 파일에서 핸들러 직접 지정\
+  `<Button ... android:onClick="onClickMethod" />`
+
+## 스타일 & 테마
+
+`res/values` 폴더에서 `<style>` 태그로 뷰 속성을 미리 정의할 수 있다.
+스타일은 `parent` 필드로 다른 스타일을 상속받을 수 있다.
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <style name="MyStyle" parent="android:style/MyParentStyle">
+        <item name="android:textSize">40dp</item>
+    </style>
+</resources>
+```
+
+```xml
+<TextView ... style="@style/MyStyle" />
+```
