@@ -31,6 +31,8 @@
 
 - [REST](https://ko.wikipedia.org/wiki/REST)(Representational State Transfer) : CRUD(Create, Read, Update, Delete), ACID(Add, Change, Inquire, Delete)와 유사
 
+- [SOLID](https://ko.wikipedia.org/wiki/SOLID_(%EA%B0%9D%EC%B2%B4_%EC%A7%80%ED%96%A5_%EC%84%A4%EA%B3%84): 객체 지향 설계 5원칙
+
 - [TDD](https://ko.wikipedia.org/wiki/%ED%85%8C%EC%8A%A4%ED%8A%B8_%EC%A3%BC%EB%8F%84_%EA%B0%9C%EB%B0%9C)(Test-driven Development; 테스트 주도  개발)
 
 - [WYSIWYG](https://ko.wikipedia.org/wiki/%EC%9C%84%EC%A7%80%EC%9C%84%EA%B7%B8)(What You See Is What You Get)
