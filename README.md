@@ -32,7 +32,7 @@ Today I Learned,
   - 연결 리스트 ([linked_list.md](/data_structure/linked_list.md))
 - 기타 ([etc/](/etc))
   - git-flow([git-flow.md](/etc/git-flow.md))
-  - 객체지향([oop.md](/etc/oop.md))
+  - 객체 지향([oop.md](/etc/oop.md))
   - 버전 관리([version_control.md](/etc/version_control.md))
   - 안티패턴([anti-pattern.md](/etc/anti-pattern.md))
   - 파이어베이스([firebase.md](/etc/firebase.md))

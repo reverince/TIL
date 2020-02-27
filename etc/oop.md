@@ -1,8 +1,10 @@
 # 객체 지향 프로그래밍(OOP)
 
+좋은 설계는 **시스템에 새로운 요구사항이나 변경사항이 있을 때, 영향을 받는 범위가 적은 구조**이다.
+
 ## 용어
 
-- 강건성([robustness](https://en.wikipedia.org/wiki/Robustness_(computer_science)): 예기치 못한 오류나 상황에 대응할 수 있는 정도
+- 강건성([robustness](https://en.wikipedia.org/wiki/Robustness_(computer_science))): 예기치 못한 오류나 상황에 대응할 수 있는 정도
 - 불변 객체(immutable object): 상태를 수정할 수 있는 메소드가 없는 객체
 
 ## 객체 간의 관계
@@ -26,6 +28,7 @@
   1. 그대로 사용 (`super()`)
   1. 재정의 (`override`)
   1. 사용할 수 없도록 조치 (ex. 빈 메소드로 재정의)
+- 죽음의 다이아몬드(DDD; Deadly Diamond of Death): 둘 이상의 부모 클래스에 같은 메소드가 정의되어 있을 경우 어느 쪽 부모의 메소드를 상속해야 하는지 알 수 없음(undefined)
 
 ### 구체화
 
@@ -47,15 +50,25 @@ public interface Comparable<T> {
 
 ### 단일 책임 원칙 (Single Responsibility Principle)
 
-한 클래스는 하나의 책임만 가져야 한다. 즉, 각 클래스는 각자 맡은 한 분야의 역할만을 수행해야 한다.
+한 클래스는 하나의 책임만 가지고, 수정할 이유는 하나뿐이어야 한다. 즉, 각 클래스는 각자 맡은 한 분야의 역할만을 수행해야 한다.
+
+응집도는 높게, 결합도는 낮게.
+
+- 응집도: 연관된 기능이 모여 있는 정도
+- 결합도: 구성 요소가 서로 의존하는 정도
 
 ### 개방-폐쇄 원칙 (Open/Closed Principle)
 
 소프트웨어 요소는 확장에 대해서는 개방적이고 수정에 대해서는 폐쇄적이어야 한다.
 
+- 상속보다 포함 관계를 활용하는 것이 OCP 원칙을 지키기 쉽다.
+
 ### 리스코프 치환 원칙 (Liskov Substitution Principle)
 
 프로그램의 객체는 프로그램의 정확성을 깨트리지 않으면서 하위 자료형의 객체로 치환할 수 있어야 한다. 즉, 자식 클래스는 언제나 부모 클래스를 대체할 수 있어야 한다.
+
+- 계약에 의한 설계(DBC; Design by Contact)
+- 팩토리 패턴
 
 ### 인터페이스 분리 원칙 (Interface Segregation Principle)
 
@@ -63,4 +76,7 @@ public interface Comparable<T> {
 
 ### 의존관계 역전 원칙 (Dependency Inversion Principle)
 
-프로그래머는 구체화가 아닌 추상화에 의존해야 한다. 즉, 추상적이고 안정적인 고수준의 클래스는 구체적이고 불안정한 저수준의 클래스에 의존하면 안 된다. (cf. [의존성 주입](https://ko.wikipedia.org/wiki/%EC%9D%98%EC%A1%B4%EC%84%B1_%EC%A3%BC%EC%9E%85), [전략 패턴](https://ko.wikipedia.org/wiki/%EC%A0%84%EB%9E%B5_%ED%8C%A8%ED%84%B4))
+프로그래머는 구체화가 아닌 추상화에 의존해야 한다. 즉, 추상적이고 안정적인 고수준의 클래스는 구체적이고 불안정한 저수준의 클래스에 의존하면 안 된다.
+- [의존성 주입](https://ko.wikipedia.org/wiki/%EC%9D%98%EC%A1%B4%EC%84%B1_%EC%A3%BC%EC%9E%85)(DI; Dependency Injection)
+- [전략 패턴](https://ko.wikipedia.org/wiki/%EC%A0%84%EB%9E%B5_%ED%8C%A8%ED%84%B4)
+- [제어 역전](https://ko.wikipedia.org/wiki/%EC%A0%9C%EC%96%B4_%EB%B0%98%EC%A0%84)(IoC; Inversion of Control)
